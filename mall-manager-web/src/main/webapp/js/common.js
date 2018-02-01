@@ -112,6 +112,7 @@ var E3 = {
     			_ele.after("<span style='margin-left:10px;'></span>");
     		}
     		_ele.unbind('click').click(function(){
+    			var url=$("#basePath").val()+"/category/list";
     			$("<div>").css({padding:"5px"}).html("<ul>")
     			.window({
     				width:'500',
@@ -123,7 +124,7 @@ var E3 = {
     			    onOpen : function(){
     			    	var _win = this;
     			    	$("ul",_win).tree({
-    			    		url:'/item/cat/list',
+    			    		url:url,
     			    		animate:true,
     			    		onClick : function(node){
     			    			if($(this).tree("isLeaf",node.target)){
