@@ -110,6 +110,7 @@
 		*/
 		//ajax的post方式提交表单
 		//$("#itemAddForm").serialize()将表单序列号为key-value形式的字符串
+		
 		$.fn.serializeObject = function() {  
         var o = {};  
         var a = this.serializeArray();  
@@ -142,4 +143,5 @@
 		$('#itemAddForm').form('reset');
 		itemAddEditor.html('');
 	}
+	
 </script>
