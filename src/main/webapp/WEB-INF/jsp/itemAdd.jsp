@@ -110,11 +110,32 @@
 		*/
 		//ajax的post方式提交表单
 		//$("#itemAddForm").serialize()将表单序列号为key-value形式的字符串
-		$.post("/item/save",$("#itemAddForm").serialize(), function(data){
-			if(data.status == 200){
-				$.messager.alert('提示','新增商品成功!');
+		$.fn.serializeObject = function() {  
+        var o = {};  
+        var a = this.serializeArray();  
+        $.each(a, function() {  
+            if (o[this.name]) {  
+                if (!o[this.name].push) {  
+                    o[this.name] = [ o[this.name] ];  
+                }  
+                o[this.name].push(this.value || '');  
+            } else {  
+                o[this.name] = this.value || '';  
+            }  
+        });  
+        return o;  
+    }  
+		$.ajax({
+			url:"${basePath}/items",
+			type:"POST",
+			contentType:"application/json",
+			data:JSON.stringify($("#itemAddForm").serializeObject()),
+			success:function(data){
+				if(data == 1){
+	                $.messager.alert('提示','新增商品成功!');
+	            }
 			}
-		});
+		})
 	}
 	
 	function clearForm(){

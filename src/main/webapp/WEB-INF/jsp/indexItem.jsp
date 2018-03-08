@@ -4,8 +4,8 @@
 </div>
 <script type="text/javascript">
 	function importItems() {
-		$.post("/index/item/import",null,function(data){
-			if(data.status == 200){
+		$.post("${basePath}/items/import",null,function(data){
+			if(data == 1){
 				$.messager.alert('提示','导入索引库成功！');
 			} else {
 				$.messager.alert('提示','导入索引库失败！');
