@@ -3,6 +3,8 @@ package com.dw.mall.service;
 import com.dw.mall.pojo.Items;
 import com.dw.mall.utils.EasyuiPagination;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 public interface ItemsService {
@@ -15,4 +17,11 @@ public interface ItemsService {
     int delete(String ids);
 
     int importIndex(HttpServletRequest request);
+
+    int soldout(List<Integer> ids);
+
+    int putaway(List<Integer> ids);
+
+    String update(Items items);
+
 }

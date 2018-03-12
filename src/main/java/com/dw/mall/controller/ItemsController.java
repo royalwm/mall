@@ -19,6 +19,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -30,6 +31,7 @@ import net.sf.json.JSONObject;
 public class ItemsController {
     @Autowired
     private ItemsService itemsService;
+
     @RequestMapping(value = "/import", method = RequestMethod.POST)
     @ResponseBody
     public int importIndex(HttpServletRequest request) {
@@ -40,6 +42,29 @@ public class ItemsController {
     @ResponseBody
     public int delete(@RequestParam("ids") String ids) {
         return itemsService.delete(ids);
+    }
+
+    @RequestMapping(value = "/soldout", method = RequestMethod.POST)
+    @ResponseBody
+    public int soldout(@RequestParam("ids") List<Integer> ids) {
+        return itemsService.soldout(ids);
+    }
+
+    @RequestMapping(value = "/putaway", method = RequestMethod.POST)
+    @ResponseBody
+    public int putaway(@RequestParam("ids") List<Integer> ids) {
+        return itemsService.putaway(ids);
+    }
+
+    @RequestMapping(value = "/echo", method = RequestMethod.GET)
+    public String edit() {
+        return "itemEdit";
+    }
+
+    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    @ResponseBody
+    public String update(@RequestBody Items items) {
+        return itemsService.update(items);
     }
 
     @RequestMapping(method = RequestMethod.POST)
@@ -89,7 +114,8 @@ public class ItemsController {
             }
             HashMap<String, Object> map = new HashMap<>();
             map.put("error", 0);
-            map.put("url", "http://127.0.0.1:8081"+request.getServletContext().getContextPath() + "/upload/" + name + ext);
+            map.put("url", "http://127.0.0.1:8081" + request.getServletContext().getContextPath() + "/upload/" + name
+                            + ext);
             JSONObject jsonObject = JSONObject.fromObject(map);
             return jsonObject.toString();
         } else {

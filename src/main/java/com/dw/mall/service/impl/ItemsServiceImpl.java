@@ -1,5 +1,6 @@
 package com.dw.mall.service.impl;
 
+import com.dw.mall.constant.RestConstant;
 import com.dw.mall.mapper.ItemsMapper;
 import com.dw.mall.pojo.Items;
 import com.dw.mall.pojo.ItemsExample;
@@ -64,11 +65,37 @@ public class ItemsServiceImpl implements ItemsService {
     public int importIndex(HttpServletRequest request) {
         try {
             ResponseEntity<String> postForEntity = restTemplate.postForEntity("http://127.0.0.1/solr",null,String.class);
-            System.out.println(postForEntity.getBody());
         } catch (Exception e) {
             e.printStackTrace();
         }
         return 1;
+    }
+
+    @Override
+    public int soldout(List<Integer> ids) {
+        for (Integer id : ids) {
+            Items items = new Items();
+            items.setId(Long.valueOf(id));
+            items.setStatus(RestConstant.Items.SOLDOUT);
+            itemsMapper.updateByPrimaryKeySelective(items);
+        }
+        return 1;
+    }
+
+    @Override
+    public int putaway(List<Integer> ids) {
+        for (Integer id : ids) {
+            Items items = new Items();
+            items.setId(Long.valueOf(id));
+            items.setStatus(RestConstant.Items.PUTAWAY);
+            itemsMapper.updateByPrimaryKeySelective(items);
+        }
+        return 1;
+    }
+
+    @Override
+    public String update(Items items) {
+        return String.valueOf(itemsMapper.updateByExample(items, null));
     }
 
 }

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<link href="/js/kindeditor-4.1.10/themes/default/default.css" type="text/css" rel="stylesheet">
-<script type="text/javascript" charset="utf-8" src="/js/kindeditor-4.1.10/kindeditor-all-min.js"></script>
-<script type="text/javascript" charset="utf-8" src="/js/kindeditor-4.1.10/lang/zh_CN.js"></script>
+<link href="${basePath }/js/kindeditor-4.1.10/themes/default/default.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" charset="utf-8" src="${basePath }/js/kindeditor-4.1.10/kindeditor-all-min.js"></script>
+<script type="text/javascript" charset="utf-8" src="${basePath }/js/kindeditor-4.1.10/lang/zh_CN.js"></script>
 <div style="padding:10px 10px 10px 10px">
 	<form id="itemeEditForm" class="itemForm" method="post">
 		<input type="hidden" name="id"/>
@@ -99,14 +99,19 @@
 		paramJson = JSON.stringify(paramJson);
 		
 		$("#itemeEditForm [name=itemParams]").val(paramJson);
-		
-		$.post("/rest/item/update",$("#itemeEditForm").serialize(), function(data){
-			if(data.status == 200){
-				$.messager.alert('提示','修改商品成功!','info',function(){
-					$("#itemEditWindow").window('close');
-					$("#itemList").datagrid("reload");
-				});
+		$.ajax({
+			url:"${basePath}/items/update",
+			type:"POST",
+			data:paramJson,
+			contentType:"application/json",
+			success:function(data){
+				if(data == 1){
+	                $.messager.alert('提示','修改商品成功!','info',function(){
+	                    $("#itemEditWindow").window('close');
+	                    $("#itemList").datagrid("reload");
+	                });
+	            }
 			}
-		});
+		})
 	}
 </script>

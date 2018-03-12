@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class PageController {
-    @RequestMapping("/")
+    @RequestMapping("/manager")
     public String index(HttpServletRequest request, HttpSession httpSession) {
         httpSession.setAttribute("basePath", request.getContextPath());
         return "index";
