@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>二手商城后台管理系统</title>
+<title>百货之家后台管理系统</title>
 <link rel="stylesheet" type="text/css" href="${basePath}/js/jquery-easyui-1.4.1/themes/gray/easyui.css" />
 <link rel="stylesheet" type="text/css" href="${basePath}/js/jquery-easyui-1.4.1/themes/icon.css" />
 <link rel="stylesheet" type="text/css" href="${basePath}/css/e3.css" />
@@ -20,8 +20,8 @@
 </head>
 <body class="easyui-layout">
     <!-- 头部标题 -->
-	<div data-options="region:'north',border:false" style="height:60px; padding:5px; background:#F3F3F3"> 
-		<span class="northTitle">二手商城后台管理系统</span>
+	<div data-options="region:'north',border:false" style="height:100px; padding:5px; background:#F3F3F3"> 
+		<span class="northTitle"><img src="${basePath}/images/logo.png" /></span>
 	    <span class="loginInfo">登录用户：admin&nbsp;&nbsp;姓名：管理员&nbsp;&nbsp;角色：系统管理员</span>
 	</div>
     <div data-options="region:'west',title:'菜单',split:true" style="width:180px;">
