@@ -63,6 +63,7 @@
 	    <a href="javascript:void(0)" class="easyui-linkbutton" onclick="clearForm()">重置</a>
 	</div>
 </div>
+<script type="text/javascript" src="${basePath }/js/toJson.js"></script>
 <script type="text/javascript">
 	var itemAddEditor ;
 	//页面初始化完毕后执行此方法
@@ -111,21 +112,7 @@
 		//ajax的post方式提交表单
 		//$("#itemAddForm").serialize()将表单序列号为key-value形式的字符串
 		
-		$.fn.serializeObject = function() {  
-        var o = {};  
-        var a = this.serializeArray();  
-        $.each(a, function() {  
-            if (o[this.name]) {  
-                if (!o[this.name].push) {  
-                    o[this.name] = [ o[this.name] ];  
-                }  
-                o[this.name].push(this.value || '');  
-            } else {  
-                o[this.name] = this.value || '';  
-            }  
-        });  
-        return o;  
-    }  
+		
 		$.ajax({
 			url:"${basePath}/items",
 			type:"POST",

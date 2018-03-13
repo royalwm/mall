@@ -95,7 +95,10 @@ public class ItemsServiceImpl implements ItemsService {
 
     @Override
     public String update(Items items) {
-        return String.valueOf(itemsMapper.updateByExample(items, null));
+        ItemsExample itemsExample = new ItemsExample();
+        Criteria createCriteria = itemsExample.createCriteria();
+        createCriteria.andIdEqualTo(items.getId());
+        return String.valueOf(itemsMapper.updateByExampleSelective(items, itemsExample));
     }
 
 }
