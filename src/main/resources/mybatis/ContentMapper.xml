@@ -80,6 +80,9 @@
   <sql id="Blob_Column_List" >
     content
   </sql>
+  <select id="selectByCategoryId" resultMap="BaseResultMap">
+    select * from content where category_id=#{categoryId}
+  </select>
   <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.dw.mall.pojo.ContentExample" >
     select
     <if test="distinct" >

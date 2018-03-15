@@ -2,6 +2,7 @@
 <link href="${basePath }/js/kindeditor-4.1.10/themes/default/default.css" type="text/css" rel="stylesheet">
 <script type="text/javascript" charset="utf-8" src="${basePath }/js/kindeditor-4.1.10/kindeditor-all-min.js"></script>
 <script type="text/javascript" charset="utf-8" src="${basePath }/js/kindeditor-4.1.10/lang/zh_CN.js"></script>
+<script type="text/javascript" charset="utf-8" src="${basePath }/js/common.js"></script>
 <div style="padding:10px 10px 10px 10px">
 	<form id="contentAddForm" class="itemForm" method="post">
 		<input type="hidden" name="categoryId"/>
@@ -65,14 +66,19 @@
 					return ;
 				}
 				contentAddEditor.sync();
-				
-				$.post("/content/save",$("#contentAddForm").serialize(), function(data){
-					if(data.status == 200){
-						$.messager.alert('提示','新增内容成功!');
-    					$("#contentList").datagrid("reload");
-    					E3.closeCurrentWindow();
-					}
-				});
+				$.ajax({
+		            url:"${basePath}/content",
+		            type:"POST",
+		            contentType:"application/json",
+		            data:JSON.stringify($("#contentAddForm").serializeObject()),
+		            success:function(data){
+		                if(data == 1){
+		                	$.messager.alert('提示','新增内容成功!');
+	                        $("#contentList").datagrid("reload");
+	                        E3.closeCurrentWindow();
+		                }
+		            }
+		        })
 			},
 			clearForm : function(){
 				$('#contentAddForm').form('reset');

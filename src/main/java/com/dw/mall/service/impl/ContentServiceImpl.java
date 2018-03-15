@@ -1,5 +1,6 @@
 package com.dw.mall.service.impl;
 
+import com.dw.mall.constant.RestConstant;
 import com.dw.mall.mapper.ContentCategoryMapper;
 import com.dw.mall.mapper.ContentMapper;
 import com.dw.mall.pojo.Content;
@@ -75,16 +76,32 @@ public class ContentServiceImpl implements ContentService {
     @Override
     public EasyuiPagination listContent(Integer page, Integer size, Long categoryId) {
         PageHelper.startPage(page, size);
-        ContentExample contentExample = new ContentExample();
-        ContentExample.Criteria createCriteria = contentExample.createCriteria();
-        createCriteria.andCategoryIdEqualTo(categoryId);
-        List<Content> list = contentMapper.selectByExampleWithBLOBs(contentExample);
+        List<Content> list = contentMapper.selectByCategoryId(categoryId);
         EasyuiPagination<Content> easyuiPagination = new EasyuiPagination<Content>();
         PageInfo<Content> pageInfo = new PageInfo<>(list);
         long total = pageInfo.getTotal();
         easyuiPagination.setRows(list);
         easyuiPagination.setTotal(total);
         return easyuiPagination;
+    }
+
+    public List<Content> listContent(Long categoryId) {
+        return contentMapper.selectByCategoryId(categoryId);
+    }
+
+    @Override
+    public int save(Content content) {
+        content.setCreated(new Date());
+        content.setUpdated(new Date());
+        return contentMapper.insert(content);
+    }
+
+    @Override
+    public int deleteContent(List<Long> ids) {
+        for (Long id : ids) {
+            contentMapper.deleteByPrimaryKey(id);
+        }
+        return RestConstant.SUCCESS;
     }
 
 }

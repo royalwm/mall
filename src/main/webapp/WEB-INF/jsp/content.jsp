@@ -5,8 +5,8 @@
             <ul id="contentCategoryTree" class="easyui-tree" data-options="url:'${basePath}/content/category/list',animate: true,method : 'GET'">
             </ul>
         </div>
-        <div data-options="region:'center'" style="padding:5px">
-            <table class="easyui-datagrid" id="contentList" data-options="toolbar:contentListToolbar,singleSelect:false,collapsible:true,pagination:true,method:'get',pageSize:20,url:' ${basePath }/content/list',queryParams:{categoryId:0}">
+        <div data-options="region:'center'"  style="padding:5px">
+            <table class="easyui-datagrid" id="contentList" fit=true data-options="fitColumns:true,toolbar:contentListToolbar,singleSelect:false,collapsible:true,pagination:true,method:'get',pageSize:20,url:' ${basePath }/content/list',queryParams:{categoryId:0}">
 		    <thead>
 		        <tr>
 		            <th data-options="field:'id',width:30">ID</th>
@@ -94,13 +94,17 @@ var contentListToolbar = [{
     	$.messager.confirm('确认','确定删除ID为 '+ids+' 的内容吗？',function(r){
     	    if (r){
     	    	var params = {"ids":ids};
-            	$.post("/content/delete",params, function(data){
-        			if(data.status == 200){
-        				$.messager.alert('提示','删除内容成功!',undefined,function(){
-        					$("#contentList").datagrid("reload");
-        				});
-        			}
-        		});
+    	    	$.ajax({
+                    url:"${basePath}/content/delete/"+ids,
+                    type:"POST",
+                    success:function(data){
+                        if(data == 1){
+                            $.messager.alert('提示','删除内容成功!',undefined,function(){
+                                $("#contentList").datagrid("reload");
+                            });
+                        }
+                    }
+                })
     	    }
     	});
     }

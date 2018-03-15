@@ -20,6 +20,7 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -90,10 +91,10 @@ public class ItemsController {
 
     @RequestMapping("/uploadPic")
     @ResponseBody
-    public String uploadPic(HttpSession request, MultipartFile uploadFile, String time) {
+    public Map<String, Object> uploadPic(HttpSession request, MultipartFile uploadFile, String time) {
         if (!uploadFile.isEmpty()) {
             // 上传文件路径
-            String path = request.getServletContext().getRealPath("/upload");
+            String path = "d:/upload";
             // 上传文件名
             String uploadFilename = uploadFile.getOriginalFilename();
             String name = uploadFilename.substring(0, uploadFilename.lastIndexOf(".")) + "_" + time;
@@ -116,14 +117,14 @@ public class ItemsController {
             map.put("error", 0);
             map.put("url", "http://127.0.0.1:8081" + request.getServletContext().getContextPath() + "/upload/" + name
                             + ext);
-            JSONObject jsonObject = JSONObject.fromObject(map);
-            return jsonObject.toString();
+            //JSONObject jsonObject = JSONObject.fromObject(map);
+            return map;
         } else {
             HashMap<String, Object> map = new HashMap<>();
             map.put("error", 1);
             map.put("url", "错误信息");
-            JSONObject jsonObject = JSONObject.fromObject(map);
-            return jsonObject.toString();
+           // JSONObject jsonObject = JSONObject.fromObject(map);
+            return map;
         }
     }
 }

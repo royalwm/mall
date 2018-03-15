@@ -234,7 +234,15 @@ var E3 = {
     initOnePicUpload : function(){
     	$(".onePicUpload").click(function(){
 			var _self = $(this);
-			KindEditor.editor(E3.kingEditorParams).loadPlugin('image', function() {
+			var url=$("#basePath").val()+"/items/uploadPic?time="+new Date().getTime();
+			KindEditor.editor({
+    			//指定上传文件参数名称
+    			filePostName  : "uploadFile",
+    			//指定上传文件请求的url。
+    			uploadJson : url,
+    			//上传类型，分别为image、flash、media、file
+    			dir : "image"
+    		}).loadPlugin('image', function() {
 				this.plugin.imageDialog({
 					showRemote : false,
 					clickFn : function(url, title, width, height, border, align) {
