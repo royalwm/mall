@@ -32,8 +32,10 @@ public class PageController {
     public String html(Model model) {
         List<Content> bigAdList = contentService.listContent(RestConstant.CONTENT_CATEGORY.BIGAD);
         List<Content> searchHotList = contentService.listContent(RestConstant.CONTENT_CATEGORY.SEARCHHOT);
+        List<Content> recommendList = contentService.listContent(RestConstant.CONTENT_CATEGORY.RECOMMEND);
         model.addAttribute("bigAdList", bigAdList);
         model.addAttribute("searchHotList", searchHotList);
+        model.addAttribute("recommendList", recommendList);
         return "forward:/index.jsp";
     }
 }

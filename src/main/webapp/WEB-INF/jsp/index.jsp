@@ -33,7 +33,7 @@
          		<ul>
 	         		<li data-options="attributes:{'url':'itemAdd'}">新增商品</li>
 	         		<li data-options="attributes:{'url':'itemList'}">查询商品</li>
-	         		<li data-options="attributes:{'url':'itemParamList'}">规格参数</li>
+	         		<!-- <li data-options="attributes:{'url':'itemParamList'}">规格参数</li> -->
 	         	</ul>
          	</li>
          	<li>
