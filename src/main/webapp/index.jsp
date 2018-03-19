@@ -52,7 +52,7 @@ pageContext.setAttribute("basePath", basePath);
 			</c:forEach> 
 		</ol>
 	</div>      
-    <%--  <div class="rSide">	
+    <div class="rSide">	
 		           <a name="sfbest_hp_hp_focus_right-ad1" class="a-img r-img1 trackref" href="/html/activity/1472440858.html" target="_blank">
           <img alt="8.30-9.5 月饼" src="${basePath}/images/html/ddf3f66b114f3a3bfbbe0b47693cdbf0.jpg">
           <div class="rmask"></div>
@@ -67,7 +67,7 @@ pageContext.setAttribute("basePath", basePath);
           <img alt="9.5中秋菜谱" src="${basePath}/images/html/838abc2055e36f423701de255bbc9914.jpg">
           <div class="rmask"></div>
           </a>
-		   	  </div> --%>   
+		   	  </div>  
  	</div>
       <ul class="none" id="lunboNum">
       			<c:forEach items="${bigAdList }" varStatus="status">
@@ -95,10 +95,10 @@ pageContext.setAttribute("basePath", basePath);
 	<h2>推荐必买<span></span></h2>
 				<ul class="bbig" id="bigPerfect">
 				<c:forEach items="${recommendList }" varStatus="status"  var="recommend">
-                    <li class="price_list0" goods="215383" eid="b_215383_0"
+                    <li  class="price_list0" goods="215383" eid="b_215383_0"
                         id="cx_b_215383_0"><a
                         href="#"
-                        title="${recommend.title}" target="_blank"><img class="lazy"
+                        title="${recommend.titleDesc}" target="_blank"><img class="lazy"
                             src="${recommend.pic}"
                             style="display: inline;"></a>
                     <div class="gBtn p-btn bbtn" style="top: 260px;">
@@ -109,7 +109,10 @@ pageContext.setAttribute("basePath", basePath);
                         <div class="bprice" id="priceK_b_215383_0">
                             <span><sup>￥</sup></span>${recommend.subTitle}
                         </div>
-                        <div style="position:relative;bottom:14px;left:10px;font-size:16px;font-weight:bold;font-family:'微软雅黑';color:#000">${recommend.titleDesc}</div>
+                        <div style="position:absolute;bottom:14px;left:10px;font-size:15px;
+                        font-weight:bold;font-family:'微软雅黑';color:#000;width:200px;overflow:hidden;height:16px;
+                        line-height:16px;
+                        white-space: nowrap;text-overflow: ellipsis;">${recommend.titleDesc}</div>
                         </li>
                 </c:forEach>
 				</ul>
