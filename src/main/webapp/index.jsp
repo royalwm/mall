@@ -52,7 +52,7 @@ pageContext.setAttribute("basePath", basePath);
 			</c:forEach> 
 		</ol>
 	</div>      
-    <div class="rSide">	
+    <%-- <div class="rSide">	
 		           <a name="sfbest_hp_hp_focus_right-ad1" class="a-img r-img1 trackref" href="/html/activity/1472440858.html" target="_blank">
           <img alt="8.30-9.5 月饼" src="${basePath}/images/html/ddf3f66b114f3a3bfbbe0b47693cdbf0.jpg">
           <div class="rmask"></div>
@@ -67,7 +67,7 @@ pageContext.setAttribute("basePath", basePath);
           <img alt="9.5中秋菜谱" src="${basePath}/images/html/838abc2055e36f423701de255bbc9914.jpg">
           <div class="rmask"></div>
           </a>
-		   	  </div>  
+		   	  </div>   --%>
  	</div>
       <ul class="none" id="lunboNum">
       			<c:forEach items="${bigAdList }" varStatus="status">
