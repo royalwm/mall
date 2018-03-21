@@ -105,7 +105,7 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.dw.mall.pojo.Items" >
+  <insert id="insert" parameterType="com.dw.mall.pojo.Items" keyProperty="id" useGeneratedKeys="true">
     insert into items (id, title, sell_point, 
       price, num, barcode, 
       image, cid, status, 

@@ -1,8 +1,10 @@
 package com.dw.mall.service.impl;
 
 import com.dw.mall.constant.RestConstant;
+import com.dw.mall.mapper.ItemsDescMapper;
 import com.dw.mall.mapper.ItemsMapper;
 import com.dw.mall.pojo.Items;
+import com.dw.mall.pojo.ItemsDesc;
 import com.dw.mall.pojo.ItemsExample;
 import com.dw.mall.pojo.ItemsExample.Criteria;
 import com.dw.mall.service.ItemsService;
@@ -15,6 +17,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -24,11 +27,16 @@ public class ItemsServiceImpl implements ItemsService {
     @Autowired
     private ItemsMapper itemsMapper;
     @Autowired
+    private ItemsDescMapper itemsDescMapper;
+    @Autowired
     private RestTemplate restTemplate;
 
     @Override
     public Items getItemById(long id) {
-        return itemsMapper.selectByPrimaryKey(id);
+        Items items = itemsMapper.selectByPrimaryKey(id);
+        ItemsDesc itemsDesc = getItemsDesc(id);
+        items.setDesc(itemsDesc.getItemDesc());
+        return items;
     }
 
     @Override
@@ -46,7 +54,13 @@ public class ItemsServiceImpl implements ItemsService {
 
     @Override
     public int save(Items items) {
-        return itemsMapper.insert(items);
+        itemsMapper.insert(items);
+        ItemsDesc itemsDesc = new ItemsDesc();
+        itemsDesc.setCreated(new Date());
+        itemsDesc.setUpdated(new Date());
+        itemsDesc.setItemId(items.getId());
+        itemsDesc.setItemDesc(items.getDesc());
+        return itemsDescMapper.insert(itemsDesc);
     }
 
     @Override
@@ -99,6 +113,11 @@ public class ItemsServiceImpl implements ItemsService {
         Criteria createCriteria = itemsExample.createCriteria();
         createCriteria.andIdEqualTo(items.getId());
         return String.valueOf(itemsMapper.updateByExampleSelective(items, itemsExample));
+    }
+
+    @Override
+    public ItemsDesc getItemsDesc(Long id) {
+        return itemsDescMapper.selectByPrimaryKey(id);
     }
 
 }

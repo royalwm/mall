@@ -1,6 +1,7 @@
 package com.dw.mall.service;
 
 import com.dw.mall.pojo.Items;
+import com.dw.mall.pojo.ItemsDesc;
 import com.dw.mall.utils.EasyuiPagination;
 
 import java.util.List;
@@ -23,5 +24,7 @@ public interface ItemsService {
     int putaway(List<Integer> ids);
 
     String update(Items items);
+
+    ItemsDesc getItemsDesc(Long id);
 
 }

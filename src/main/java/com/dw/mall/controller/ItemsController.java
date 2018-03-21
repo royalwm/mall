@@ -2,11 +2,13 @@ package com.dw.mall.controller;
 
 
 import com.dw.mall.pojo.Items;
+import com.dw.mall.pojo.ItemsDesc;
 import com.dw.mall.service.ItemsService;
 import com.dw.mall.utils.EasyuiPagination;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -81,6 +83,23 @@ public class ItemsController {
     @ResponseBody
     public Items getItemById(@PathVariable Long id) {
         return itemsService.getItemById(id);
+    }
+    @RequestMapping(value = "/desc/{id}", method = RequestMethod.GET)
+    @ResponseBody
+    public ItemsDesc getItemDesc(@PathVariable Long id) {
+        return itemsService.getItemsDesc(id);
+    }
+    @RequestMapping(value = "/{id}/detial", method = RequestMethod.GET)
+    public String getItemsDetial(HttpServletRequest request,@PathVariable Long id,ModelMap map) {
+        Items items = itemsService.getItemById(id);
+        ItemsDesc itemsDesc=itemsService.getItemsDesc(id);
+        String image = items.getImage();
+        String[] images = image.split(",");
+        items.setImages(images);
+        map.addAttribute("item", items);
+        map.addAttribute("basePath",request.getContextPath());
+        map.addAttribute("itemsDesc",itemsDesc);
+        return "item";
     }
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)

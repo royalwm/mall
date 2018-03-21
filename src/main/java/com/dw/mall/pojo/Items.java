@@ -1,6 +1,7 @@
 package com.dw.mall.pojo;
 
 import java.util.Date;
+import java.util.List;
 
 public class Items {
     private Long id;
@@ -17,6 +18,8 @@ public class Items {
 
     private String image;
 
+    private String desc;
+
     private Long cid;
 
     private Byte status;
@@ -24,6 +27,24 @@ public class Items {
     private Date created;
 
     private Date updated;
+    private String[] images;
+
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
+
+    public String[] getImages() {
+        return images;
+    }
+
+    public void setImages(String[] images) {
+        this.images = images;
+    }
 
     public Long getId() {
         return id;
