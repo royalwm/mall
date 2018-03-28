@@ -4,6 +4,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
@@ -29,7 +30,7 @@ public class LoginFilter implements HandlerInterceptor {
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object arg2) throws Exception {
 		String uri = request.getRequestURI();
 		boolean mark=false;
-		if (uri.contains("/cart")) {
+		if (uri.contains("/cart")||uri.contains("/order")) {
 			Cookie[] cookies = request.getCookies();
 			for (Cookie cookie : cookies) {
 				if ("token".equals(cookie.getName())) {
@@ -43,7 +44,16 @@ public class LoginFilter implements HandlerInterceptor {
 			}
 			String requestURI = request.getRequestURI();
 			String itemId = requestURI.substring(requestURI.lastIndexOf("/")+1);
-			response.sendRedirect(request.getScheme()+"://"+request.getServerName()+":8082/login?redirect="+request.getScheme()+"://"+request.getServerName()+":8081/mall/cart/add/"+itemId+"?num="+request.getParameter("num"));
+			if (uri.contains("/cart")) {
+				if (StringUtils.isBlank(request.getParameter("num"))) {
+					response.sendRedirect(request.getScheme()+"://"+request.getServerName()+":8082/login?redirect="+request.getScheme()+"://"+request.getServerName()+":8081/mall/cart/add");
+					return false;
+				}
+				response.sendRedirect(request.getScheme()+"://"+request.getServerName()+":8082/login?redirect="+request.getScheme()+"://"+request.getServerName()+":8081/mall/cart/add/"+itemId+"?num="+request.getParameter("num"));
+			}
+			if (uri.contains("/order")) {
+				response.sendRedirect(request.getScheme()+"://"+request.getServerName()+":8082/login?redirect="+request.getScheme()+"://"+request.getServerName()+":8081/mall/order/page");
+			}
 			return false;
 		}
 		return true;

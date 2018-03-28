@@ -22,8 +22,6 @@
  <script type="text/javascript" src="${basePath }/js/cookie.js"></script>
 <script type="text/javascript" src="${basePath }/js/shadow.js"></script>
 <script type="text/javascript" src="${basePath }/js/cartCommon.js"></script>
-
-
    <title>我的购物车 - 百货之家</title>
 <body> 
 <jsp:include page="commons/header.jsp" />
@@ -34,7 +32,7 @@
 	</div>
 	<div class="cartMain">
       <div class="cartThead">
-        <div class="tCol tCheckbox"><input name="acart_list_check" id="Zall" type="checkbox" onclick="Zall(this)"> 全选</div>
+        <div class="tCol tCheckbox"><input name="acart_list_check" id="allCheckbox" type="checkbox" onclick="allCheckbox(this)"> 全选</div>
         <div class="tCol tGoods">商品</div>
         <div class="tCol tPrice">单价</div>
         <div class="tCol tPromotion">优惠</div>
@@ -45,33 +43,27 @@
         <div class="tCol tOperator">操作</div>
       </div>
       <div class="cartTbody">
-
-		<div class="cartColumnhd">
-			<div class="cartCheckbox">
-				<input name="cart_list_yx" id="Zpu" type="checkbox"
-					onclick="PutongAll(this)">优选商品 
-			</div>
-		</div>
 		<div class="cartList youxuan" id="all_putong">
 		<div style="margin: 20px; text-align: center; display: none;" id="danjianload"></div>
 		<div id="danjian">
 			<div class="cartItem">
 				<c:forEach items="${cartList}" var="cart">
 				<c:set var="totalPrice"  value="${ totalPrice + (cart.price * cart.num)}"/>
+				<c:set var="itemsIds" >${itemsIds}${cart.id},</c:set>
 				<div class="cartPInfo" id="danjian-0-229363">
 					<div class="clearit">
 						<div class="pItem pCheckbox">
-							<input name="cart_list" class="putong"	value="danjian-0-229363" type="checkbox"/>
+							<input name="cart_list" class="putong"	itemId="${cart.id }"  type="checkbox"/>
 						</div>
 						<div class="pItem pGoods">
 							<div class="cart_pimg">
-								<a target="_blank" title="${cart.title }" href="http://localhost:8086/item/${cart.id }.html">
+								<a target="_blank" title="${cart.title }" href="${basePath }/items/${cart.id }/detial">
 								<img src="${cart.image }" style="width: 60px;height: 60px;"/>
 								</a>
 							</div>
 							<div class="cart_pname">
 								<div>
-								<a target="_blank" href="http://localhost:8086/item/${cart.id }.html">${cart.title }</a>
+								<a target="_blank" href="${basePath }/items/${cart.id }/detial">${cart.title }</a>
 								</div>
 								<div class="cdzg">产地直供</div>
 							</div>
@@ -84,9 +76,9 @@
 						<div class="pItem pPromotion">&nbsp;</div>
 						<div class="pItem pQuantity">
 							<div class="cartAmount">
-								<a href="javascript:void(0);" class="cartCountBtn decrement">-</a> 
+								<a href="javascript:void(0);" class="cartCountBtn decrement" onclick="decrementNum(this)">-</a> 
 								<input type="text" value="${cart.num }" class="amount itemnum" itemPrice="${cart.price}" itemId="${cart.id}" id="amountdanjian-0-229363" name="amount">
-								<a href="javascript:void(0);" class="cartCountBtn increment">+</a> 
+								<a href="javascript:void(0);" class="cartCountBtn increment" onclick="incrementNum(this)">+</a> 
 							</div>
 						</div>
 						<div class="pItem pWeight">0.05kg<br></div>
@@ -95,14 +87,29 @@
 						</div>
 						<div class="pItem pInventory">现货</div>
 						<div class="pItem pOperator">
-							<a id="cartDel" href="javascript:void(0)" onclick="deleteCart(${cart.id})">删除</a>
+							<a id="cartDel" href="javascript:void(0)" onclick="deleteCart(this,${cart.id})">删除</a>
 							<script type="text/javascript">
-							function deleteCart(id){
+							function incrementNum(obj){
+								var inputDom=$(obj).siblings("input");
+								inputDom.val(inputDom.val()*1+1);
+								window.location.href="${basePath}/cart/update?num="+inputDom.val()+"&itemId="+inputDom.attr("itemId");
+							}
+							function decrementNum(obj){
+								var inputDom=$(obj).siblings("input");
+								if(inputDom.val()*1==1)return;
+								inputDom.val(inputDom.val()*1-1);
+								window.location.href="${basePath}/cart/update?num="+inputDom.val()+"&itemId="+inputDom.attr("itemId");
+							}
+							function deleteCart(obj,id){
 								$.ajax({
 									url:"${basePath}/cart/delete/"+id,
 									type:"POST",
+									async:false,
 									success:function(data){
-										alert()
+										if(data==1){
+											$(obj).parents(".cartPInfo").remove();
+											location.href="${basePath}/cart/add";
+										}
 									}
 								})
 							}
@@ -119,7 +126,44 @@
       <div class="cartOrderCount" id="orderCount">
         <div class="cartButtons">
           <input type="button" value="删除选中的商品" onclick="javascript:cartDelMore();" class="cartclear">
-          <input type="button" value="清空购物车" onclick="javascript:delAll('273fe391cb449af4');" class="cartclear">
+          <input type="button" value="清空购物车" onclick="javascript:delAll();" class="cartclear">
+          <script>
+          function cartDelMore(){
+        	  var itemCart=$("input[name=cart_list]");
+        	  var arr=[];
+        	  for(var i=0;i<itemCart.length;i++){
+        		  if(itemCart.eq(i).attr("checked")==true){
+        			  deleteCart(itemCart.eq(i),itemCart.eq(i).attr("itemId"));
+        		  }
+        	  }
+          }
+          function delAll(){
+        	  var itemsIds="${itemsIds}";
+        	  var ids=itemsIds.substring(0,itemsIds.length-1);
+        	  $.ajax({
+					url:"${basePath}/cart/delete/"+ids,
+					type:"POST",
+					success:function(data){
+						if(data==1){
+						   $("#all_putong").remove();
+							location.href="${basePath}/cart/add";
+						}
+					}
+				})
+        	}
+          function allCheckbox(obj){
+        	  var itemCart=$("input[name=cart_list]");
+        	  if($(obj).attr("checked")==true){
+        		  for(var i=0;i<itemCart.length;i++){
+            		  itemCart.eq(i).attr("checked",true);
+            	  }
+        	  }else{
+        		  for(var i=0;i<itemCart.length;i++){
+            		  itemCart.eq(i).attr("checked",false);
+            	  }
+        	  }
+          }
+          </script>
         </div>
         <div class="cartTotalItem">
           <span id="all_shopePrice">（不含运费）</span>&nbsp;&nbsp;&nbsp;&nbsp;商品总计：
@@ -129,7 +173,7 @@
       </div>
       <div class="cartJsuan">
          <input onclick="javascript:document.location.href='${basePath }'" class="goshop" value="继续购物" type="button">
-         <input onclick="javascript:document.location.href='http://localhost:8091/order/order-cart.html'" class="jiesuan youxuan" value="去结算" type="button">
+         <input onclick="javascript:document.location.href='${basePath }/order/page'" class="jiesuan" value="去结算" type="button">
       </div>
     </div>
 </div>

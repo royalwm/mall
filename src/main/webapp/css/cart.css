@@ -87,7 +87,7 @@ input.amount{width:25px;height:14px;line-height:14px;margin:0 2px;display:inline
 .goshop{ background:url(/images/header.png) no-repeat 0 -225px;height:28px;width:73px;border:1px solid #a5cf69;color:#666666;margin:0 10px 0 0;cursor:pointer}
 .goshop:hover{color:#669900;}
 .jiesuan{background:#6e9b0c;height:45px;width:150px;border:0;color:#FFF;text-align:center;font-size:16px;font-weight:bold;cursor:pointer;}
-.jiesuan:hover{background:url(/images/productinfo.png) no-repeat 0 -124px;}
+.jiesuan:hover{background:#000;}
 .jiesuan.haitao{background:#fd7641;margin-right:10px;}
 .w{background-color:#F5F5F5;border:1px solid #1B6146;left:50%;margin-left:-220px;position: absolute;top: 30px;width: 450px;z-index: 999;}
 .w .title{border-bottom:1px solid #1B6146;height:30px;}

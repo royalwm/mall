@@ -6,6 +6,6 @@ import javax.servlet.http.HttpServletRequest;
 
 public interface CartService {
 
-	int deleteCart(HttpServletRequest request, List<Long> itemIds);
+	int deleteCart(HttpServletRequest request, List<Long> itemIds) throws Exception;
 
 }

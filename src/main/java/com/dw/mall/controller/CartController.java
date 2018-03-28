@@ -35,10 +35,36 @@ public class CartController {
 	@Autowired
 	private CartService cartService;
 
+	@RequestMapping("/update")
+	public String update(HttpServletRequest request, Integer num,Long itemId) throws Exception {
+		Cookie[] cookies = request.getCookies();
+		String userId = "";
+		for (Cookie cookie : cookies) {
+			if ("token".equals(cookie.getName())) {
+				userId = cookie.getValue();
+			}
+		}
+		User user = userService.getUserByToken(userId);
+		String itemJson = redisClient.hget("cart", user.getUsername());
+		JSONArray itemObj = JSONArray.fromObject(itemJson);
+		ArrayList<Items> itemsList = (ArrayList<Items>) JSONArray.toCollection(itemObj, Items.class);
+		if (itemsList.size() > 0) {
+			for (Items items : itemsList) {
+				if (items.getId().longValue() == itemId) {
+					items.setNum(num);
+					break;
+				}
+			}
+		}
+		JSONArray newJson = JSONArray.fromObject(itemsList);
+		redisClient.hset("cart", user.getUsername(), newJson.toString());
+		return "redirect:/cart/add";
+	}
+
 	@RequestMapping("/delete/{itemIds}")
 	@ResponseBody
-	public int delete(HttpServletRequest request,@PathVariable("itemIds") List<Long> itemIds) {
-		cartService.deleteCart(request,itemIds);
+	public int delete(HttpServletRequest request, @PathVariable("itemIds") List<Long> itemIds) throws Exception {
+		cartService.deleteCart(request, itemIds);
 		return RestConstant.SUCCESS;
 	}
 
@@ -82,6 +108,24 @@ public class CartController {
 		}
 		JSONArray itemObj = JSONArray.fromObject(itemsList);
 		redisClient.hset("cart", user.getUsername(), itemObj.toString());
+		model.addAttribute("cartList", itemsList);
+		return "cart";
+	}
+
+	@RequestMapping("/add")
+	public String jumpToCart(HttpServletRequest request, ModelMap model) throws Exception {
+		model.addAttribute("basePath", request.getContextPath());
+		Cookie[] cookies = request.getCookies();
+		String userId = "";
+		for (Cookie cookie : cookies) {
+			if ("token".equals(cookie.getName())) {
+				userId = cookie.getValue();
+			}
+		}
+		User user = userService.getUserByToken(userId);
+		String itemJson = redisClient.hget("cart", user.getUsername());
+		JSONArray itemObj = JSONArray.fromObject(itemJson);
+		ArrayList<Items> itemsList = (ArrayList<Items>) JSONArray.toCollection(itemObj, Items.class);
 		model.addAttribute("cartList", itemsList);
 		return "cart";
 	}
