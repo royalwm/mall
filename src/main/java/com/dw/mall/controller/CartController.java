@@ -1,5 +1,7 @@
 package com.dw.mall.controller;
 
+import static org.hamcrest.CoreMatchers.nullValue;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -124,8 +126,11 @@ public class CartController {
 		}
 		User user = userService.getUserByToken(userId);
 		String itemJson = redisClient.hget("cart", user.getUsername());
-		JSONArray itemObj = JSONArray.fromObject(itemJson);
-		ArrayList<Items> itemsList = (ArrayList<Items>) JSONArray.toCollection(itemObj, Items.class);
+		ArrayList<Items> itemsList=null;
+		if(itemJson!=null) {
+			JSONArray itemObj = JSONArray.fromObject(itemJson);
+			itemsList = (ArrayList<Items>) JSONArray.toCollection(itemObj, Items.class);
+		}
 		model.addAttribute("cartList", itemsList);
 		return "cart";
 	}

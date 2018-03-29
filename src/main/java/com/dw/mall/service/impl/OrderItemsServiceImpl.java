@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import com.dw.mall.mapper.OrderItemsMapper;
 import com.dw.mall.pojo.Order;
 import com.dw.mall.pojo.OrderItems;
+import com.dw.mall.pojo.OrderItemsExample;
+import com.dw.mall.pojo.OrderItemsExample.Criteria;
 import com.dw.mall.pojo.OrderMapping;
 import com.dw.mall.service.OrderItemsService;
 @Service
@@ -22,6 +24,14 @@ public class OrderItemsServiceImpl implements OrderItemsService {
 			orderItems.setOrderId(order.getOrderId());
 			orderItemsMapper.insertSelective(orderItems);
 		}
+	}
+
+	@Override
+	public void deleteByOrderId(String orderId) {
+		OrderItemsExample orderItemsExample = new OrderItemsExample();
+		Criteria createCriteria = orderItemsExample.createCriteria();
+		createCriteria.andOrderIdEqualTo(orderId);
+		orderItemsMapper.deleteByExample(orderItemsExample);
 	}
 
 }

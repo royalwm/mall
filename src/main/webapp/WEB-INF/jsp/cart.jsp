@@ -173,7 +173,18 @@
       </div>
       <div class="cartJsuan">
          <input onclick="javascript:document.location.href='${basePath }'" class="goshop" value="继续购物" type="button">
-         <input onclick="javascript:document.location.href='${basePath }/order/page'" class="jiesuan" value="去结算" type="button">
+         <input onclick="pay()" class="jiesuan" value="去结算" type="button">
+         <script>
+         	function pay(){
+         		if('${cartList}'!=""){
+         			document.location.href='${basePath }/order/page';
+         		}else{
+         			jAlert("结算失败，原因是：购物车没有物品!","提示",function(){
+         				window.location.href="${basePath}";
+         			});
+         		}
+         	}
+         </script>
       </div>
     </div>
 </div>

@@ -6,4 +6,6 @@ public interface OrderItemsService {
 
 	void addOrderItems(OrderMapping order);
 
+	void deleteByOrderId(String orderId);
+
 }

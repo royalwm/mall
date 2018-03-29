@@ -564,6 +564,136 @@ public class UserExample {
             addCriterion("updated not between", value1, value2, "updated");
             return (Criteria) this;
         }
+
+        public Criteria andNicknameIsNull() {
+            addCriterion("nickname is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andNicknameIsNotNull() {
+            addCriterion("nickname is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andNicknameEqualTo(String value) {
+            addCriterion("nickname =", value, "nickname");
+            return (Criteria) this;
+        }
+
+        public Criteria andNicknameNotEqualTo(String value) {
+            addCriterion("nickname <>", value, "nickname");
+            return (Criteria) this;
+        }
+
+        public Criteria andNicknameGreaterThan(String value) {
+            addCriterion("nickname >", value, "nickname");
+            return (Criteria) this;
+        }
+
+        public Criteria andNicknameGreaterThanOrEqualTo(String value) {
+            addCriterion("nickname >=", value, "nickname");
+            return (Criteria) this;
+        }
+
+        public Criteria andNicknameLessThan(String value) {
+            addCriterion("nickname <", value, "nickname");
+            return (Criteria) this;
+        }
+
+        public Criteria andNicknameLessThanOrEqualTo(String value) {
+            addCriterion("nickname <=", value, "nickname");
+            return (Criteria) this;
+        }
+
+        public Criteria andNicknameLike(String value) {
+            addCriterion("nickname like", value, "nickname");
+            return (Criteria) this;
+        }
+
+        public Criteria andNicknameNotLike(String value) {
+            addCriterion("nickname not like", value, "nickname");
+            return (Criteria) this;
+        }
+
+        public Criteria andNicknameIn(List<String> values) {
+            addCriterion("nickname in", values, "nickname");
+            return (Criteria) this;
+        }
+
+        public Criteria andNicknameNotIn(List<String> values) {
+            addCriterion("nickname not in", values, "nickname");
+            return (Criteria) this;
+        }
+
+        public Criteria andNicknameBetween(String value1, String value2) {
+            addCriterion("nickname between", value1, value2, "nickname");
+            return (Criteria) this;
+        }
+
+        public Criteria andNicknameNotBetween(String value1, String value2) {
+            addCriterion("nickname not between", value1, value2, "nickname");
+            return (Criteria) this;
+        }
+
+        public Criteria andPermissionIsNull() {
+            addCriterion("permission is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPermissionIsNotNull() {
+            addCriterion("permission is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPermissionEqualTo(Integer value) {
+            addCriterion("permission =", value, "permission");
+            return (Criteria) this;
+        }
+
+        public Criteria andPermissionNotEqualTo(Integer value) {
+            addCriterion("permission <>", value, "permission");
+            return (Criteria) this;
+        }
+
+        public Criteria andPermissionGreaterThan(Integer value) {
+            addCriterion("permission >", value, "permission");
+            return (Criteria) this;
+        }
+
+        public Criteria andPermissionGreaterThanOrEqualTo(Integer value) {
+            addCriterion("permission >=", value, "permission");
+            return (Criteria) this;
+        }
+
+        public Criteria andPermissionLessThan(Integer value) {
+            addCriterion("permission <", value, "permission");
+            return (Criteria) this;
+        }
+
+        public Criteria andPermissionLessThanOrEqualTo(Integer value) {
+            addCriterion("permission <=", value, "permission");
+            return (Criteria) this;
+        }
+
+        public Criteria andPermissionIn(List<Integer> values) {
+            addCriterion("permission in", values, "permission");
+            return (Criteria) this;
+        }
+
+        public Criteria andPermissionNotIn(List<Integer> values) {
+            addCriterion("permission not in", values, "permission");
+            return (Criteria) this;
+        }
+
+        public Criteria andPermissionBetween(Integer value1, Integer value2) {
+            addCriterion("permission between", value1, value2, "permission");
+            return (Criteria) this;
+        }
+
+        public Criteria andPermissionNotBetween(Integer value1, Integer value2) {
+            addCriterion("permission not between", value1, value2, "permission");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

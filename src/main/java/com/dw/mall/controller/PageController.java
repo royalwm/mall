@@ -2,7 +2,9 @@ package com.dw.mall.controller;
 
 import com.dw.mall.constant.RestConstant;
 import com.dw.mall.pojo.Content;
+import com.dw.mall.pojo.User;
 import com.dw.mall.service.ContentService;
+import com.dw.mall.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,9 +21,13 @@ import javax.servlet.http.HttpSession;
 public class PageController {
     @Autowired
     private ContentService contentService;
+    @Autowired
+    private UserService userService;
     @RequestMapping("/manager")
-    public String index(HttpServletRequest request, HttpSession httpSession) {
+    public String index(HttpServletRequest request, HttpSession httpSession,String username) {
         httpSession.setAttribute("basePath", request.getContextPath());
+        User user=userService.selectUserByUsername(username);
+        request.setAttribute("user", user);
         return "index";
     }
     @RequestMapping("/{pageUrl}")

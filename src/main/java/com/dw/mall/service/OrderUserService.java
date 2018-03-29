@@ -6,4 +6,6 @@ public interface OrderUserService {
 
 	void addOrderUser(OrderUser orderUser);
 
+	void deleteByOrderId(String orderId);
+
 }

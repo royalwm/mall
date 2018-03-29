@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -23,7 +24,10 @@
     <!-- 头部标题 -->
 	<div data-options="region:'north',border:false" style="height:100px; padding:5px; background:#F3F3F3"> 
 		<span class="northTitle"><a href="/mall"><img src="${basePath}/images/logo.png" /></a></span>
-	    <span class="loginInfo">登录用户：admin&nbsp;&nbsp;姓名：管理员&nbsp;&nbsp;角色：系统管理员</span>
+	    <span class="loginInfo">登录用户：${user.username }&nbsp;&nbsp;昵称：${user.nickname}&nbsp;&nbsp;
+	    	角色:<c:if test="${user.permission==1 }"><span style="color:red">超级管理员</span></c:if>
+	    	<c:if test="${user.permission==3 }">管理员</c:if>
+	    </span>
 	</div>
     <div data-options="region:'west',title:'菜单',split:true" style="width:180px;">
     	<input type="hidden" id="basePath" value="${basePath}">
@@ -49,12 +53,21 @@
 	         		<li data-options="attributes:{'url':'indexItem'}">solr索引库维护</li>
 	         	</ul>
          	</li>
+         	<c:if test="${user.permission==1 }">
+         		<li>
+         		<span>用户管理</span>
+         		<ul>
+	         		<li data-options="attributes:{'url':'userList'}">查询用户</li>
+	         	</ul>
+         	</li>
+         	</c:if>
          </ul>
     </div>
     <div data-options="region:'center',title:''">
     	<div id="tabs" class="easyui-tabs">
 		    <div title="首页" style="padding:20px;">
-		        	
+		        	<div style="color:red">超级管理员:可以对用户更改</div>
+		        	<div>管理员:不可以对用户更改</div>
 		    </div>
 		</div>
     </div>

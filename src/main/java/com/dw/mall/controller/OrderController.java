@@ -2,6 +2,7 @@ package com.dw.mall.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.http.Cookie;
@@ -10,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.dw.mall.config.RedisClient;
 import com.dw.mall.constant.RestConstant;
 import com.dw.mall.pojo.Items;
+import com.dw.mall.pojo.OrderItems;
 import com.dw.mall.pojo.OrderMapping;
 import com.dw.mall.pojo.OrderUser;
 import com.dw.mall.pojo.Receiver;
@@ -51,7 +53,7 @@ public class OrderController {
 		String string = redisClient.get(cookie);
 		User user = (User) JSONUtil.jsonStringToBean(string, User.class);
 		OrderUser orderUser = orderMapping.getOrderUser();
-		String orderId = UUID.randomUUID().toString();
+		String orderId = UUID.randomUUID().toString().replaceAll("-", "");
 		orderMapping.setOrderId(orderId);
 		orderMapping.setUserId(user.getId());
 		orderUser.setOrderId(orderId);
@@ -62,6 +64,7 @@ public class OrderController {
 		request.setAttribute("payment", orderMapping.getPayment());
 		request.setAttribute("orderId", orderId);
 		request.setAttribute("orderUser", user.getUsername());
+		redisClient.hdel("cart", user.getUsername());
 		return "orderSuccess";
 	}
 
@@ -138,5 +141,23 @@ public class OrderController {
 	@ResponseBody
 	public Receiver queryReceiver(Receiver receiver) {
 		return orderService.selectReceiverByUserId(receiver.getUserId().longValue());
+	}
+	@RequestMapping("/query")
+	public String queryOrder(HttpServletRequest request) throws Exception {
+		String cookie = CookieUtils.getCookie(request, "token");
+		String string = redisClient.get(cookie);
+		User user = (User) JSONUtil.jsonStringToBean(string, User.class);
+		List<List<OrderItems>> orderItems=orderService.queryOrder(user.getId());
+		request.setAttribute("basePath", request.getContextPath());
+		request.setAttribute("orderItems", orderItems);
+		return "myOrders";
+	}
+	@RequestMapping("/delete/{orderId}")
+	@ResponseBody
+	public int deleteOrder(HttpServletRequest request,@PathVariable("orderId") String orderId) throws Exception {
+		orderService.deleteByOrderId(orderId);
+		orderItemsService.deleteByOrderId(orderId);
+		orderUserService.deleteByOrderId(orderId);
+		return RestConstant.SUCCESS;
 	}
 }

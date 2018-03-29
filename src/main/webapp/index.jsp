@@ -17,8 +17,54 @@ pageContext.setAttribute("basePath", basePath);
     <meta property="wb:webmaster" content="3a008ad947166307">
     <link rel="stylesheet" type="text/css" href="${basePath}/css/base_w1200.css?v=2016071333">
     <link rel="stylesheet" type="text/css" href="${basePath}/css/index.css?v=2016071312">
+    <link rel="stylesheet" type="text/css" href="${basePath}/js/jquery-easyui-1.4.1/themes/gray/easyui.css" />
+<link rel="stylesheet" type="text/css" href="${basePath}/js/jquery-easyui-1.4.1/themes/icon.css" />
 	<script type="text/javascript" src="${basePath}/js/jquery-1.4.2.min.js"></script>
 	<script type="text/javascript" src="${basePath}/js/global_index.js"></script>
+	<script type="text/javascript" src="${basePath}/js/jquery-easyui-1.4.1/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="${basePath}/js/jquery-easyui-1.4.1/locale/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript" src="${basePath}/js/jquery.cookie.js"></script>
+<script type="text/javascript" src="${basePath}/js/wmShow.js"></script>
+<script>
+function getContextPath() {
+    return window.location.protocol + "//" + window.location.hostname;
+}
+var _ticket = $.cookie("token");
+if(_ticket){
+	$.ajax({
+		url : getContextPath()+":8082/user/token/" + _ticket,
+		dataType : "jsonp",
+		type : "GET",
+		success : function(data){
+			if(data!=null){
+				var nickname = data.nickname;
+				wmShow.show({
+					time:5000,
+					boxBgColor:"#ccc",
+					width:"350px",
+					height:"200px",
+					border:"5px solid #ccc",
+					title:"提示",
+					body:"欢迎"+nickname,
+					bodyStyle:{
+						borderRadius:"5px",
+						color:"#000",
+						fontSize:"20px",
+						padding:"10px"
+					},
+					titleStyle:{
+							background:"#428bca",
+							borderRadius:"5px",
+							color:"#000",
+							fontSize:"16px",
+							padding:"5px"
+					}
+				})
+			}
+		}
+	});
+}
+</script>
 <style id="style-1-cropbar-clipper">
 .en-markup-crop-options {
     top: 18px !important;

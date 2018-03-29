@@ -156,7 +156,16 @@
   	<div id="orderSaveTip" class="ct"></div>            
     <div class="submitOrder">
       <div class="orderSubmit">
-      	<input id="save" name="save" onclick="$('#orderForm').submit()" class="submitBtn" value="提交订单 " type="button"/>
+      	<input id="save" name="save" onclick="submitOrder()" class="submitBtn" value="提交订单 " type="button"/>
+      	<script type="text/javascript">
+			function submitOrder(){
+				if('${receiver}'==''){
+					jAlert("请填写收货人");
+					return;
+				}
+				$('#orderForm').submit();
+			}
+		</script>
       </div>
       <div class="orderAccount">
         <span class="t">应付总额：</span>

@@ -43,5 +43,10 @@
 				<!-- 定义在mvc:interceptor下面的表示是对特定的请求才进行拦截的 -->
 				<bean class="com.dw.mall.filter.LoginFilter" />
 			</mvc:interceptor>
+			<mvc:interceptor>
+				<mvc:mapping path="/**" />
+				<!-- 定义在mvc:interceptor下面的表示是对特定的请求才进行拦截的 -->
+				<bean class="com.dw.mall.filter.AdminFilter" />
+			</mvc:interceptor>
 	</mvc:interceptors>
 </beans>

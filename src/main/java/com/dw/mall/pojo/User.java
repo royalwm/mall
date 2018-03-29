@@ -17,6 +17,10 @@ public class User {
 
     private Date updated;
 
+    private String nickname;
+
+    private Integer permission;
+
     public Long getId() {
         return id;
     }
@@ -71,5 +75,21 @@ public class User {
 
     public void setUpdated(Date updated) {
         this.updated = updated;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname == null ? null : nickname.trim();
+    }
+
+    public Integer getPermission() {
+        return permission;
+    }
+
+    public void setPermission(Integer permission) {
+        this.permission = permission;
     }
 }

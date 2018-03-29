@@ -29,7 +29,7 @@ pageContext.setAttribute("basePath", basePath);
       </div>
     </div>
     <div class="shopingcar" id="topCart">
-      <s class="setCart"></s><a href="${basePath }/cart/add" class="t" rel="nofollow">我的购物车</a><b id="cartNum">0</b>
+      <s class="setCart"></s><a href="${basePath }/cart/add" class="t" rel="nofollow">我的购物车</a>
       <span class="outline"></span>
       <span class="blank"></span>
       <div id="cart_lists">

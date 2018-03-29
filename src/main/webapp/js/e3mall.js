@@ -14,7 +14,14 @@ var E3MALL = {
 			success : function(data){
 				if(data!=null){
 					var username = data.username;
+					var permission=data.permission;
 					var html ="<span style='color:red;font-weight:bold'>"+ username+"</span>" + "，欢迎来到百货之家！<a href=\""+getContextPath()+":8082/user/logout\" class=\"link-logout\">[退出]</a>";
+					if(permission==1){
+						html+="&nbsp;&nbsp;<a href='/mall/manager?username="+username+"'>管理员通道</a>";
+					}
+					if(permission==3){
+						html+="&nbsp;&nbsp;<a href='/mall/manager?username="+username+"'>管理员通道</a>";
+					}
 					$("#loginbar").html(html);
 				}
 			}
