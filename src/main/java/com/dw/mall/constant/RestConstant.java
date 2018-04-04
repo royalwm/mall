@@ -14,6 +14,11 @@ public interface RestConstant {
 		Long BIGAD = 89l;// 大广告
 		Long SEARCHHOT = 99l;
 		Long RECOMMEND = 101l;// 推荐
+		Long NEWSFLASH = 91l;//快报
+		Long INTELLIGENTPIONEER = 102l;//智能先锋
+		Long LIFESTYLE = 104l;//生活百货
+		Long FAMILYSTYLE = 106l;//居家优品
+		Long FASHIONSTYLE = 107l;//时尚达人
 	}
 
 	public interface Permission {

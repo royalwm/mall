@@ -1,7 +1,5 @@
 package com.dw.mall.controller;
 
-import static org.hamcrest.CoreMatchers.nullValue;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -99,13 +97,23 @@ public class CartController {
 					Integer oldNum = items2.getNum();
 					num = oldNum + num;
 					items2.setNum(num);
+					String image = items2.getImage();
+					String[] images = image.split(",");
+					items2.setImages(images);
 					mark = true;
 					break;
+				}else {
+					String image = items2.getImage();
+					String[] images = image.split(",");
+					items2.setImages(images);
 				}
 			}
 		}
 		if (!mark) {
 			items.setNum(num);
+			String image = items.getImage();
+			String[] images = image.split(",");
+			items.setImages(images);
 			itemsList.add(items);
 		}
 		JSONArray itemObj = JSONArray.fromObject(itemsList);

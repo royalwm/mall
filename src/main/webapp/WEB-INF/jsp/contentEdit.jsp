@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <link href="/js/kindeditor-4.1.10/themes/default/default.css" type="text/css" rel="stylesheet">
-<script type="text/javascript" charset="utf-8" src="/js/kindeditor-4.1.10/kindeditor-all-min.js"></script>
-<script type="text/javascript" charset="utf-8" src="/js/kindeditor-4.1.10/lang/zh_CN.js"></script>
+<script type="text/javascript" charset="utf-8" src="${basePath }/js/kindeditor-4.1.10/kindeditor-all-min.js"></script>
+<script type="text/javascript" charset="utf-8" src="${basePath }/js/kindeditor-4.1.10/lang/zh_CN.js"></script>
+<script type="text/javascript" charset="utf-8" src="${basePath }/js/common.js"></script>
 <div style="padding:10px 10px 10px 10px">
 	<form id="contentEditForm" class="itemForm" method="post">
 		<input type="hidden" name="categoryId"/>
@@ -22,7 +23,7 @@
 	        </tr>
 	         <tr>
 	            <td>URL:</td>
-	            <td><input class="easyui-textbox" type="text" name="url" style="width: 280px;"></input></td>
+	            <td><input class="easyui-textbox" type="text" name="url" style="width: 280px; "></input></td>
 	        </tr>
 	        <tr>
 	            <td>图片:</td>
@@ -66,8 +67,8 @@ var contentEditPage = {
 			}
 			contentEditEditor.sync();
 			
-			$.post("/rest/content/edit",$("#contentEditForm").serialize(), function(data){
-				if(data.status == 200){
+			$.post("${basePath}/content/edit",$("#contentEditForm").serialize(), function(data){
+				if(data== "1"){
 					$.messager.alert('提示','新增内容成功!');
 					$("#contentList").datagrid("reload");
 					E3.closeCurrentWindow();

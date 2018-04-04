@@ -43,6 +43,7 @@ public class ItemsServiceImpl implements ItemsService {
     public EasyuiPagination<Items> listItems(int page, int size) {
         PageHelper.startPage(page, size);
         ItemsExample itemsExample = new ItemsExample();
+        itemsExample.setOrderByClause("id desc");
         List<Items> list = itemsMapper.selectByExample(itemsExample);
         EasyuiPagination<Items> easyuiPagination = new EasyuiPagination<Items>();
         PageInfo<Items> pageInfo = new PageInfo<>(list);
@@ -78,7 +79,7 @@ public class ItemsServiceImpl implements ItemsService {
     @Override
     public int importIndex(HttpServletRequest request) {
         try {
-            ResponseEntity<String> postForEntity = restTemplate.postForEntity(request.getScheme()+"://"+request.getServerName()+"/solr",null,String.class);
+            ResponseEntity<String> postForEntity = restTemplate.postForEntity(request.getScheme()+"://"+request.getServerName()+":8080/solr",null,String.class);
         } catch (Exception e) {
             e.printStackTrace();
         }

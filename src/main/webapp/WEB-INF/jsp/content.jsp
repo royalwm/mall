@@ -65,7 +65,7 @@ var contentListToolbar = [{
     		return ;
     	}
 		E3.createWindow({
-			url : "/content-edit",
+			url : "${basePath}/contentEdit",
 			onLoad : function(){
 				var data = $("#contentList").datagrid("getSelections")[0];
 				$("#contentEditForm").form("load",data);

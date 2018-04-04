@@ -39,7 +39,12 @@ public class AdminFilter implements HandlerInterceptor {
 					String token = cookie.getValue();
 					String string = redisClient.get(token);
 					User user = (User) JSONUtil.jsonStringToBean(string, User.class);
-					if (RestConstant.Permission.ADMIN.equals(user.getPermission())) {
+					if (!RestConstant.Permission.NORMAL.equals(user.getPermission())) {
+						String username = request.getParameter("username");
+						if (!user.getUsername().equals(username)) {
+							response.sendRedirect(request.getContextPath());
+							return false;
+						}
 						return true;
 					}
 				}

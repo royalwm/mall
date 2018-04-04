@@ -39,9 +39,19 @@ public class PageController {
         List<Content> bigAdList = contentService.listContent(RestConstant.CONTENT_CATEGORY.BIGAD);
         List<Content> searchHotList = contentService.listContent(RestConstant.CONTENT_CATEGORY.SEARCHHOT);
         List<Content> recommendList = contentService.listContent(RestConstant.CONTENT_CATEGORY.RECOMMEND);
+        List<Content> newsFlashList = contentService.listContent(RestConstant.CONTENT_CATEGORY.NEWSFLASH);
+        List<Content> intelligentPioneer = contentService.listContent(RestConstant.CONTENT_CATEGORY.INTELLIGENTPIONEER);
+        List<Content> lifeStyleList = contentService.listContent(RestConstant.CONTENT_CATEGORY.LIFESTYLE);
+        List<Content> familyStyleList = contentService.listContent(RestConstant.CONTENT_CATEGORY.FAMILYSTYLE);
+        List<Content> fashionStyleList = contentService.listContent(RestConstant.CONTENT_CATEGORY.FASHIONSTYLE);
         model.addAttribute("bigAdList", bigAdList);
         model.addAttribute("searchHotList", searchHotList);
         model.addAttribute("recommendList", recommendList);
+        model.addAttribute("newsFlashList", newsFlashList);
+        model.addAttribute("intelligentPioneerList", intelligentPioneer);
+        model.addAttribute("lifeStyleList", lifeStyleList);
+        model.addAttribute("familyStyleList", familyStyleList);
+        model.addAttribute("fashionStyleList", fashionStyleList);
         return "forward:/index.jsp";
     }
 }

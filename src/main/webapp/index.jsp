@@ -65,6 +65,10 @@ if(_ticket){
 	});
 }
 </script>
+<style>
+	ul li img{transition:all 1s;}
+	ul li img:hover{transform:scale(1.2)}
+</style>
 <style id="style-1-cropbar-clipper">
 .en-markup-crop-options {
     top: 18px !important;
@@ -79,7 +83,7 @@ if(_ticket){
     margin-left: 0px !important;
 }
 </style></head>
-<body>
+<body bgColor="#f0f3ef">
 <!-- header start -->
 <jsp:include page="commons/header.jsp" />
 <jsp:include page="commons/mainmenu.jsp" />
@@ -143,14 +147,14 @@ if(_ticket){
 				<c:forEach items="${recommendList }" varStatus="status"  var="recommend">
                     <li  class="price_list0" goods="215383" eid="b_215383_0"
                         id="cx_b_215383_0"><a
-                        href="#"
+                        href="${recommend.url}"
                         title="${recommend.titleDesc}" target="_blank"><img class="lazy"
                             src="${recommend.pic}"
                             style="display: inline;"></a>
                     <div class="gBtn p-btn bbtn" style="top: 260px;">
                             <a pid="215383"
                                 data_url="${recommend.url}"
-                                href="javascript:void(0)" indexflag="1">加入购物车</a>
+                                href="${recommend.url}" indexflag="1">加入购物车</a>
                         </div>
                         <div class="bprice" id="priceK_b_215383_0">
                             <span><sup>￥</sup></span>${recommend.subTitle}
@@ -166,233 +170,72 @@ if(_ticket){
 	<!-- 口碑甄选 end --> 
 	<div class="rSide1">
 			
-    	<div class="rImg2">
+    	<%-- <div class="rImg2">
       	<a name="sfbest_hp_hp_news_right-ad" class="trackref" href="/html/activity/1472464260.html" target="_blank"><img salt="9.2-9.5" src="${basePath}/images/goods/751d2091c008c2a49c1934545730f041.jpg"></a>
-   		</div>
-		 
+   		</div> --%>
         <div class="sfNews">
-          <div class="rTitle"><h2>最新动态</h2><a href="/www/173/" target="_blank" class="more">更多&gt;</a></div>
+          <div class="rTitle"><h2>最新动态</h2><a href="${basePath }/content/news/more" target="_blank" class="more">更多&gt;</a></div>
           <ul>
-		              <li><a name="sfbest_hp_hp_news_1" href="/www/173/8531.html" target="_blank" class=" red trackref" title="受杭州G20峰会影响的配送问题公告">受杭州G20峰会影响的配送问题公告</a></li>
-		              <li><a name="sfbest_hp_hp_news_2" href="/www/173/8449.html" target="_blank" class=" trackref" title="购买燕麦片满49元抽奖活动中奖公告">购买燕麦片满49元抽奖活动中奖公告</a></li>
-		              <li><a name="sfbest_hp_hp_news_3" href="/www/173/8447.html" target="_blank" class=" trackref" title="满299抽iPhone6s活动中奖公告">满299抽iPhone6s活动中奖公告</a></li>
-		              <li><a name="sfbest_hp_hp_news_4" href="/www/173/8445.html" target="_blank" class=" trackref" title="《珍膳米，带你冲上云霄》活动中奖名单公布">《珍膳米，带你冲上云霄》活动中奖名单公布</a></li>
-		            </ul>
+          		<c:forEach items="${newsFlashList }" varStatus="status"  var="newsFlash">
+          		<li><a name="sfbest_hp_hp_news_1" href="${newsFlash.url }?id=${newsFlash.id}" target="_blank" class=" red trackref" title="${newsFlash.title }">${newsFlash.titleDesc }</a></li>
+                </c:forEach>
+		  </ul>
         </div>
     </div>
 	</div>
 	<div class="clr"></div>
 </div>
 <!--楼层 start-->
-<div class="indexW mt2 full_ad" style="width:1190px;padding-left:10px;"><a name="sfbest_hp_hp_banner_1" class="trackref" href="/html/activity/1472461333.html" target="_blank"><img alt="8.30-9.5" class="lazy" 
- src="${basePath}/images/goods/8f42d6d2deead3da7d50c8a702a3c939.jpg" style="display: inline;"></a>
+<div class="indexW mt2 full_ad" style="width:1190px;padding-left:10px;">
+<!-- 智能先锋 start -->
+<div class="floorhd" style="color:#222;padding:0 50px;font-family:'微软雅黑',font-weight:normal;font-size:28px;line-height:45px;text-align:center">-----智能先锋------</div>
 	 </div>
 <div class="indexW mt2 ie6 fresh">
     <div class="category">
-	<ul class="mTitle">
+	<ul class="mTitle" style="width:250px">
 		<li>
 		<div class="cir"></div>
 		<h2>
 			<em></em>
-			<a name="sfbest_hp_hp_floor1_floor-category1" class="trackref" href="/fresh/52-0-0-0-0-2-0-0-0-0-0.html" target="_blank">水果</a>&nbsp;&nbsp;<a name="sfbest_hp_hp_floor1_floor-category2" class="trackref" href="/fresh/55-0-0-0-0-2-0-0-0-0-0.html" target="_blank">蔬菜</a>
+			<a name="sfbest_hp_hp_floor1_floor-category1" class="trackref" href="javascript:void(0)" target="_blank">智能</a>&nbsp;&nbsp;<a name="sfbest_hp_hp_floor1_floor-category2" class="trackref" href="javascript:void(0)" target="_blank">先锋</a>
 		</h2>
 		</li>
 	</ul>
-		<div class="lCont"><a name="sfbest_hp_hp_floor1_left-ad" class="trackref" href="/html/activity/1472459562.html" target="_blank">
-		<img alt="8.30-9.5" class="lazy" src="${basePath}/images/goods/26336113289bf7273823080488a9d200.jpg" style="display: inline;"></a></div>
+		<div class="lCont"><a name="sfbest_hp_hp_floor1_left-ad" class="trackref" href="javascript:void(0)" target="_blank">
+		<img alt="8.30-9.5" class="lazy"  src="${basePath}/images/index/智能先锋.jpg!q90!cc_340x420" style="display: inline;"></a></div>
 	  </div>
   <div class="sfRight">
       <div class="subCont">
 				<ul class="pList" id="floor-gap-1">
+				<c:forEach items="${intelligentPioneerList }" varStatus="status"  var="intelligentPioneer">
 					<li class="price_list1" eid="l_218031_7_297" goods="218031"
 						id="cx_l_218031_7_297"><div class="pImg">
 							<a
-								href="http://www.e3mall.cn/html/products/219/1800218031.html#trackref=sfbest_hp_hp_floor1_item1"
-								target="_blank" title="泰国金柚700-1200g"><img class="lazy"
-								data="${basePath}/images/goods/160x160.jpg"
+								href="${intelligentPioneer.url }"
+								target="_blank" title="${intelligentPioneer.title }"><img class="lazy"
+								data="${intelligentPioneer.pic}"
 								alt="泰国金柚700-1200g"
-								src="${basePath}/images/goods/160x160-1.jpg"
+								src="${intelligentPioneer.pic}"
 								style="display: block;"></a>
 							<div class="gBtn p-btn">
 								<a pid="218031"
-									data_url="${basePath}/images/goods/160x160.jpg"
+									data_url="${intelligentPioneer.pic}"
 									href="javascript:void(0)" indexflag="1">加入购物车</a>
 							</div>
 						</div>
 						<div class="title-a">
 							<a
 								href="http://www.e3mall.cn/html/products/219/1800218031.html#trackref=sfbest_hp_hp_floor1_item1"
-								target="_blank" title="泰国金柚700g-1200g">泰国金柚700g-1200g</a>
+								target="_blank" title="${intelligentPioneer.title}">${intelligentPioneer.titleDesc}</a>
 						</div>
 						<div class="price" id="priceL_l_218031_7_297">
-							<b>￥19.9</b>
+							<b>￥${intelligentPioneer.subTitle}</b>
 						</div></li>
-					<li class="price_list1" eid="l_218155_7_297" goods="218155"
-						id="cx_l_218155_7_297"><div class="pImg">
-							<a
-								href="http://www.e3mall.cn/html/products/219/1800218155.html#trackref=sfbest_hp_hp_floor1_item2"
-								target="_blank" title="天山一号火焰山哈密瓜1.4kg-2kg【下单后3-5天发货】"><img
-								class="lazy"
-								data="${basePath}/images/goods/160x160.jpg"
-								alt="天山一号火焰山哈密瓜1.4kg-2kg【下单后3-5天发货】"
-								src="${basePath}/images/goods/160x160-2.jpg"
-								style="display: block;"></a>
-							<div class="gBtn p-btn">
-								<a pid="218155"
-									data_url="${basePath}/images/goods/160x160.jpg"
-									href="javascript:void(0)" indexflag="1">加入购物车</a>
-							</div>
-						</div>
-						<div class="title-a">
-							<a
-								href="http://www.e3mall.cn/html/products/219/1800218155.html#trackref=sfbest_hp_hp_floor1_item2"
-								target="_blank" title="天山一号火焰山哈密瓜">天山一号火焰山哈密瓜</a>
-						</div>
-						<div class="price" id="priceL_l_218155_7_297">
-							<b>￥22.8</b>
-						</div></li>
-					<li class="price_list1" eid="l_236853_7_297" goods="236853"
-						id="cx_l_236853_7_297"><div class="pImg">
-							<a
-								href="http://www.e3mall.cn/html/products/237/1800236853.html#trackref=sfbest_hp_hp_floor1_item3"
-								target="_blank" title="一点红冬枣1000g"><img class="lazy"
-								data="${basePath}/images/goods/160x160.jpg"
-								alt="一点红冬枣1000g"
-								src="${basePath}/images/goods/160x160-3.jpg"
-								style="display: block;"></a>
-							<div class="gBtn p-btn">
-								<a pid="236853"
-									data_url="${basePath}/images/goods/160x160.jpg"
-									href="javascript:void(0)" indexflag="1">加入购物车</a>
-							</div>
-						</div>
-						<div class="title-a">
-							<a
-								href="http://www.e3mall.cn/html/products/237/1800236853.html#trackref=sfbest_hp_hp_floor1_item3"
-								target="_blank" title="一点红冬枣1kg">一点红冬枣1kg</a>
-						</div>
-						<div class="price" id="priceL_l_236853_7_297">
-							<b>￥69.9</b>
-						</div></li>
-					<li class="price_list1" eid="l_218955_7_297" goods="218955"
-						id="cx_l_218955_7_297"><div class="pImg">
-							<a
-								href="http://www.e3mall.cn/html/products/219/1800218955.html#trackref=sfbest_hp_hp_floor1_item4"
-								target="_blank" title="墨西哥牛油果420g（3个装）"><img class="lazy"
-								data="${basePath}/images/goods/160x160.jpg"
-								alt="墨西哥牛油果420g（3个装）"
-								src="${basePath}/images/goods/160x160-4.jpg"
-								style="display: block;"></a>
-							<div class="gBtn p-btn">
-								<a pid="218955"
-									data_url="${basePath}/images/goods/160x160.jpg"
-									href="javascript:void(0)" indexflag="1">加入购物车</a>
-							</div>
-						</div>
-						<div class="title-a">
-							<a
-								href="http://www.e3mall.cn/html/products/219/1800218955.html#trackref=sfbest_hp_hp_floor1_item4"
-								target="_blank" title="墨西哥牛油果3粒420g">墨西哥牛油果3粒420g</a>
-						</div>
-						<div class="price" id="priceL_l_218955_7_297">
-							<b>￥29.9</b>
-						</div></li>
-					<li class="price_list1" eid="l_236863_7_297" goods="236863"
-						id="cx_l_236863_7_297"><div class="pImg">
-							<a
-								href="http://www.e3mall.cn/html/products/237/1800236863.html#trackref=sfbest_hp_hp_floor1_item5"
-								target="_blank" title="佳沛zespri 佳沛新西兰金奇异果12个（36号）"><img
-								class="lazy"
-								data="${basePath}/images/goods/160x160.jpg"
-								alt="佳沛zespri 佳沛新西兰金奇异果12个（36号）"
-								src="${basePath}/images/goods/160x160-5.jpg"
-								style="display: block;"></a>
-							<div class="gBtn p-btn">
-								<a pid="236863"
-									data_url="${basePath}/images/goods/160x160.jpg"
-									href="javascript:void(0)" indexflag="1">加入购物车</a>
-							</div>
-						</div>
-						<div class="title-a">
-							<a
-								href="http://www.e3mall.cn/html/products/237/1800236863.html#trackref=sfbest_hp_hp_floor1_item5"
-								target="_blank" title="佳沛 新西兰金奇异果12个">佳沛 新西兰金奇异果12个</a>
-						</div>
-						<div class="price" id="priceL_l_236863_7_297">
-							<b>￥76</b>
-						</div></li>
-					<li class="price_list1" eid="l_236871_7_297" goods="236871"
-						id="cx_l_236871_7_297"><div class="pImg">
-							<a
-								href="http://www.e3mall.cn/html/products/237/1800236871.html#trackref=sfbest_hp_hp_floor1_item6"
-								target="_blank" title="国产西梅1000g"><img class="lazy"
-								data="${basePath}/images/goods/160x160.jpg"
-								alt="国产西梅1000g"
-								src="${basePath}/images/goods/160x160-6.jpg"
-								style="display: block;"></a>
-							<div class="gBtn p-btn">
-								<a pid="236871"
-									data_url="${basePath}/images/goods/160x160.jpg"
-									href="javascript:void(0)" indexflag="1">加入购物车</a>
-							</div>
-						</div>
-						<div class="title-a">
-							<a
-								href="http://www.e3mall.cn/html/products/237/1800236871.html#trackref=sfbest_hp_hp_floor1_item6"
-								target="_blank" title="国产西梅1kg">国产西梅1kg</a>
-						</div>
-						<div class="price" id="priceL_l_236871_7_297">
-							<b>￥19.9</b>
-						</div></li>
-					<li class="price_list1" eid="l_218073_7_297" goods="218073"
-						id="cx_l_218073_7_297"><div class="pImg">
-							<a
-								href="http://www.e3mall.cn/html/products/219/1800218073.html#trackref=sfbest_hp_hp_floor1_item7"
-								target="_blank" title="新西兰红玫瑰苹果720g(4个装)"><img class="lazy"
-								data="${basePath}/images/goods/160x160.jpg"
-								alt="新西兰红玫瑰苹果720g(4个装)"
-								src="${basePath}/images/goods/160x160-7.jpg"
-								style="display: block;"></a>
-							<div class="gBtn p-btn">
-								<a pid="218073"
-									data_url="${basePath}/images/goods/160x160.jpg"
-									href="javascript:void(0)" indexflag="1">加入购物车</a>
-							</div>
-						</div>
-						<div class="title-a">
-							<a
-								href="http://www.e3mall.cn/html/products/219/1800218073.html#trackref=sfbest_hp_hp_floor1_item7"
-								target="_blank" title="新西兰红玫瑰苹果4粒720g">新西兰红玫瑰苹果4粒720g</a>
-						</div>
-						<div class="price" id="priceL_l_218073_7_297">
-							<b>￥35.8</b>
-						</div></li>
-					<li class="price_list1" eid="l_215405_7_297" goods="215405"
-						id="cx_l_215405_7_297"><div class="pImg">
-							<a
-								href="http://www.e3mall.cn/html/products/216/1800215405.html#trackref=sfbest_hp_hp_floor1_item8"
-								target="_blank" title="皇冠蜜梨1000g（4个装）"><img class="lazy"
-								data="${basePath}/images/goods/160x160.jpg"
-								alt="皇冠蜜梨1000g（4个装）"
-								src="${basePath}/images/goods/160x160-8.jpg"
-								style="display: block;"></a>
-							<div class="gBtn p-btn">
-								<a pid="215405"
-									data_url="${basePath}/images/goods/160x160.jpg"
-									href="javascript:void(0)" indexflag="1">加入购物车</a>
-							</div>
-						</div>
-						<div class="title-a">
-							<a
-								href="http://www.e3mall.cn/html/products/216/1800215405.html#trackref=sfbest_hp_hp_floor1_item8"
-								target="_blank" title="皇冠蜜梨4粒1kg">皇冠蜜梨4粒1kg</a>
-						</div>
-						<div class="price" id="priceL_l_215405_7_297">
-							<b>￥15.9</b>
-						</div></li>
+                </c:forEach>
+					
 				</ul>
 			</div>
-      <div class="redge">
+      <!-- <div class="redge">
         <ul class="rHot">
 		            <li><a name="sfbest_hp_hp_floor1_Keywords1" class="trackref" href="/productlist/search/?categoryId=8&amp;keyword=%E8%93%9D%E8%8E%93&amp;o=saleNum%3Adesc" target="_blank">蓝莓</a></li>
 		             <li><a name="sfbest_hp_hp_floor1_Keywords2" class="trackref" href="/productlist/search?inputBox=1&amp;categoryId=0&amp;keyword=%E6%A4%B0%E9%9D%92" target="_blank">椰青</a></li>
@@ -410,13 +253,162 @@ if(_ticket){
           <a name="sfbest_hp_hp_floor1_right-ad" class="ht1 trackref" href="/html/activity/1472547970.html" target="_blank"><img alt="8.30-9.5" class="lazy" data="http://001.sfimg.cn/web/1dd1130a/1dd1130a9c0103f6ec8a13fa13f27641.jpg" src="http://001.sfimg.cn/web/1dd1130a/1dd1130a9c0103f6ec8a13fa13f27641.jpg" style="display: inline;"></a>
           <div class="rbutton"><a href="/html/activity/1472547970.html" target="_blank"></a></div>
 		          </div>
-      </div>
+      </div> -->
   </div>
+	 <!-- 智能先锋 end -->
+	 <!-- 生活百货 start -->
+<div class="floorhd" style="color:#222;padding:0 50px;font-family:'微软雅黑',font-weight:normal;font-size:28px;line-height:45px;text-align:center">-----生活百货------</div>
+	 </div>
+<div class="indexW mt2 ie6 fresh">
+    <div class="category">
+	<ul class="mTitle" style="width:250px">
+		<li>
+		<div class="cir"></div>
+		<h2>
+			<em></em>
+			<a name="sfbest_hp_hp_floor1_floor-category1" class="trackref" href="javascript:void(0)" target="_blank">生活</a>&nbsp;&nbsp;<a name="sfbest_hp_hp_floor1_floor-category2" class="trackref" href="javascript:void(0)" target="_blank">百货</a>
+		</h2>
+		</li>
+	</ul>
+		<div class="lCont"><a name="sfbest_hp_hp_floor1_left-ad" class="trackref" href="javascript:void(0)" target="_blank">
+		<img alt="8.30-9.5" class="lazy"  src="${basePath}/images/index/生活百货.jpg!q90!cc_340x420" style="display: inline;"></a></div>
+	  </div>
+  <div class="sfRight">
+      <div class="subCont">
+				<ul class="pList" id="floor-gap-1">
+				<c:forEach items="${lifeStyleList }" varStatus="status"  var="lifeStyle">
+					<li class="price_list1" eid="l_218031_7_297" goods="218031"
+						id="cx_l_218031_7_297"><div class="pImg">
+							<a
+								href="${lifeStyle.url }"
+								target="_blank" title="${lifeStyle.title }"><img class="lazy"
+								data="${lifeStyle.pic}"
+								alt="泰国金柚700-1200g"
+								src="${lifeStyle.pic}"
+								style="display: block;"></a>
+							<div class="gBtn p-btn">
+								<a pid="218031"
+									data_url="${lifeStyle.pic}"
+									href="javascript:void(0)" indexflag="1">加入购物车</a>
+							</div>
+						</div>
+						<div class="title-a">
+							<a
+								href="http://www.e3mall.cn/html/products/219/1800218031.html#trackref=sfbest_hp_hp_floor1_item1"
+								target="_blank" title="${lifeStyle.title}">${lifeStyle.titleDesc}</a>
+						</div>
+						<div class="price" id="priceL_l_218031_7_297">
+							<b>￥${lifeStyle.subTitle}</b>
+						</div></li>
+                </c:forEach>
+					
+				</ul>
+			</div>
+  </div>
+	 <!-- 生活百货 end -->
+	 <!-- 居家优品 start -->
+<div class="floorhd" style="color:#222;padding:0 50px;font-family:'微软雅黑',font-weight:normal;font-size:28px;line-height:45px;text-align:center">-----居家优品------</div>
+	 </div>
+<div class="indexW mt2 ie6 fresh">
+    <div class="category">
+	<ul class="mTitle" style="width:250px">
+		<li>
+		<div class="cir"></div>
+		<h2>
+			<em></em>
+			<a name="sfbest_hp_hp_floor1_floor-category1" class="trackref" href="javascript:void(0)" target="_blank">居家</a>&nbsp;&nbsp;<a name="sfbest_hp_hp_floor1_floor-category2" class="trackref" href="javascript:void(0)" target="_blank">优品</a>
+		</h2>
+		</li>
+	</ul>
+		<div class="lCont"><a name="sfbest_hp_hp_floor1_left-ad" class="trackref" href="javascript:void(0)" target="_blank">
+		<img alt="8.30-9.5" class="lazy"  src="${basePath}/images/index/居家优品.jpg!q90!cc_340x420" style="display: inline;"></a></div>
+	  </div>
+  <div class="sfRight">
+      <div class="subCont">
+				<ul class="pList" id="floor-gap-1">
+				<c:forEach items="${familyStyleList }" varStatus="status"  var="familyStyle">
+					<li class="price_list1" eid="l_218031_7_297" goods="218031"
+						id="cx_l_218031_7_297"><div class="pImg">
+							<a
+								href="${familyStyle.url }"
+								target="_blank" title="${familyStyle.title }"><img class="lazy"
+								data="${familyStyle.pic}"
+								alt="泰国金柚700-1200g"
+								src="${familyStyle.pic}"
+								style="display: block;"></a>
+							<div class="gBtn p-btn">
+								<a pid="218031"
+									data_url="${familyStyle.pic}"
+									href="javascript:void(0)" indexflag="1">加入购物车</a>
+							</div>
+						</div>
+						<div class="title-a">
+							<a
+								href="http://www.e3mall.cn/html/products/219/1800218031.html#trackref=sfbest_hp_hp_floor1_item1"
+								target="_blank" title="${familyStyle.title}">${familyStyle.titleDesc}</a>
+						</div>
+						<div class="price" id="priceL_l_218031_7_297">
+							<b>￥${familyStyle.subTitle}</b>
+						</div></li>
+                </c:forEach>
+					
+				</ul>
+			</div>
+  </div>
+	 <!-- 居家优品 end -->
+	 <!-- 时尚达人 start -->
+<div class="floorhd" style="color:#222;padding:0 50px;font-family:'微软雅黑',font-weight:normal;font-size:28px;line-height:45px;text-align:center">-----时尚达人------</div>
+	 </div>
+<div class="indexW mt2 ie6 fresh">
+    <div class="category">
+	<ul class="mTitle" style="width:250px">
+		<li>
+		<div class="cir"></div>
+		<h2>
+			<em></em>
+			<a name="sfbest_hp_hp_floor1_floor-category1" class="trackref" href="javascript:void(0)" target="_blank">时尚</a>&nbsp;&nbsp;<a name="sfbest_hp_hp_floor1_floor-category2" class="trackref" href="javascript:void(0)" target="_blank">达人</a>
+		</h2>
+		</li>
+	</ul>
+		<div class="lCont"><a name="sfbest_hp_hp_floor1_left-ad" class="trackref" href="javascript:void(0)" target="_blank">
+		<img alt="8.30-9.5" class="lazy"  src="${basePath}/images/index/时尚达人.jpg!q90!cc_340x420" style="display: inline;"></a></div>
+	  </div>
+  <div class="sfRight">
+      <div class="subCont">
+				<ul class="pList" id="floor-gap-1">
+				<c:forEach items="${fashionStyleList }" varStatus="status"  var="fashionStyle">
+					<li class="price_list1" eid="l_218031_7_297" goods="218031"
+						id="cx_l_218031_7_297"><div class="pImg">
+							<a
+								href="${fashionStyle.url }"
+								target="_blank" title="${fashionStyle.title }"><img class="lazy"
+								data="${fashionStyle.pic}"
+								alt="泰国金柚700-1200g"
+								src="${fashionStyle.pic}"
+								style="display: block;"></a>
+							<div class="gBtn p-btn">
+								<a pid="218031"
+									data_url="${fashionStyle.pic}"
+									href="javascript:void(0)" indexflag="1">加入购物车</a>
+							</div>
+						</div>
+						<div class="title-a">
+							<a
+								href="http://www.e3mall.cn/html/products/219/1800218031.html#trackref=sfbest_hp_hp_floor1_item1"
+								target="_blank" title="${fashionStyle.title}">${fashionStyle.titleDesc}</a>
+						</div>
+						<div class="price" id="priceL_l_218031_7_297">
+							<b>￥${fashionStyle.subTitle}</b>
+						</div></li>
+                </c:forEach>
+				</ul>
+			</div>
+  </div>
+	 <!-- 居家优品 end -->
   <!----天天生鲜 -->
     <span class="clr"></span>
 </div>
 <!--楼层 end -->
-
 <!-- footer start -->
 <jsp:include page="commons/footer.jsp" />
 <!-- footer end -->

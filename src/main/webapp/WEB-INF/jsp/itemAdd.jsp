@@ -122,6 +122,7 @@
 			success:function(data){
 				if(data == 1){
 	                $.messager.alert('提示','新增商品成功!');
+	                window.parent.location.reload();
 	            }
 			}
 		})

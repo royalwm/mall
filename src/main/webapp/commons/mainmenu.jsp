@@ -1424,7 +1424,7 @@
 					class="trackref" href="/html/web/card.html?p=1" target="_blank"><img
 						alt="优选卡 送健康"
 						src="${basePath}/images/html/7a80fda907bf5107f6967add2a304a51.jpg"
-						width="196" height="38"></a></li>
+						width="196" height="38"></a></li> 
 			</ul>
 		</div>
 		<span class="clear"></span>

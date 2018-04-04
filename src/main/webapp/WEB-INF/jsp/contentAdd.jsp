@@ -22,7 +22,7 @@
 	        </tr>
 	         <tr>
 	            <td>URL:</td>
-	            <td><input class="easyui-textbox" type="text" name="url" style="width: 280px;"></input></td>
+	            <td><input class="easyui-textbox" type="text" name="url" style="width: 280px;" value="/mall/content/news"></input></td>
 	        </tr>
 	        <tr>
 	            <td>图片:</td>

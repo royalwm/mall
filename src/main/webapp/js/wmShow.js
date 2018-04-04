@@ -1,6 +1,6 @@
 var wmShow={
 				show:function(param){
-				var dialog='<div class="wmShow_box" style="position:fixed;bottom:0;right:0;border-radius:5px;display: flex;flex-direction: column;">'+
+				var dialog='<div class="wmShow_box" style="position:fixed;bottom:0;right:0;border-radius:5px;display: flex;flex-direction: column;z-index:999">'+
 							'<div class="wmShow_title">123</div>'+
 							'<div class="wmShow_body">456</div>'+
 						'</div><audio id="voice"></audio>';

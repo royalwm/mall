@@ -58,7 +58,7 @@
 						<div class="pItem pGoods">
 							<div class="cart_pimg">
 								<a target="_blank" title="${cart.title }" href="${basePath }/items/${cart.id }/detial">
-								<img src="${cart.image }" style="width: 60px;height: 60px;"/>
+								<img src="${cart.images[0] }" style="width: 60px;height: 60px;"/>
 								</a>
 							</div>
 							<div class="cart_pname">

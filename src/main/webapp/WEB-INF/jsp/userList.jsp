@@ -21,7 +21,6 @@
 <div id="userAddWindow" class="easyui-window" title="添加用户" data-options="modal:true,closed:true,iconCls:'icon-save',href:'${basePath}/user/addPage'" style="width:30%;height:50%;padding:10px;">
 </div>
 <script>
-
     function getSelectionsIds(){
     	var userList = $("#userList");
     	var sels = userList.datagrid("getSelections");
@@ -32,60 +31,59 @@
     	ids = ids.join(",");
     	return ids;
     }
-    
-    var toolbar = [{
-        text:'新增',
-        iconCls:'icon-add',
-        handler:function(){
-        	$("#userAddWindow").window("open");
-        }
-    },{
-        text:'编辑',
-        iconCls:'icon-edit',
-        handler:function(){
-        	var ids = getSelectionsIds();
-        	if(ids.length == 0){
-        		$.messager.alert('提示','必须选择一个用户才能编辑!');
-        		return ;
-        	}
-        	if(ids.indexOf(',') > 0){
-        		$.messager.alert('提示','只能选择一个用户!');
-        		return ;
-        	}
-        	
-        	$("#userEditWindow").window({
-        		onLoad :function(){
-        			//回显数据
-        			var data = $("#userList").datagrid("getSelections")[0];
-        			$("#userEditForm").form("load",data);
-        		}
-        	}).window("open");
-        }
-    },{
-        text:'删除',
-        iconCls:'icon-cancel',
-        handler:function(){
-        	var ids = getSelectionsIds();
-        	if(ids.length == 0){
-        		$.messager.alert('提示','未选中用户!');
-        		return ;
-        	}
-        	$.messager.confirm('确认','确定删除ID为 '+ids+' 的用户吗？',function(r){
-        	    if (r){
-        	    	var params = {"ids":ids};
-                	$.post("${basePath}/user/delete",params, function(data){
-            			if(data == 1){
-            				$.messager.alert('提示','删除用户成功!',undefined,function(){
-            					$("#userList").datagrid("reload");
-            				});
-            			}else{
-            				$.messager.alert('提示','删除用户失败!',undefined,function(){
-                                $("#userList").datagrid("reload");
-                            });
-            			}
-            		});
-        	    }
-        	});
-        }
-    }];
+    	var toolbar = [{
+            text:'新增',
+            iconCls:'icon-add',
+            handler:function(){
+            	$("#userAddWindow").window("open");
+            }
+        },{
+            text:'编辑',
+            iconCls:'icon-edit',
+            handler:function(){
+            	var ids = getSelectionsIds();
+            	if(ids.length == 0){
+            		$.messager.alert('提示','必须选择一个用户才能编辑!');
+            		return ;
+            	}
+            	if(ids.indexOf(',') > 0){
+            		$.messager.alert('提示','只能选择一个用户!');
+            		return ;
+            	}
+            	
+            	$("#userEditWindow").window({
+            		onLoad :function(){
+            			//回显数据
+            			var data = $("#userList").datagrid("getSelections")[0];
+            			$("#userEditForm").form("load",data);
+            		}
+            	}).window("open");
+            }
+        },{
+            text:'删除',
+            iconCls:'icon-cancel',
+            handler:function(){
+            	var ids = getSelectionsIds();
+            	if(ids.length == 0){
+            		$.messager.alert('提示','未选中用户!');
+            		return ;
+            	}
+            	$.messager.confirm('确认','确定删除ID为 '+ids+' 的用户吗？',function(r){
+            	    if (r){
+            	    	var params = {"ids":ids};
+                    	$.post("${basePath}/user/delete",params, function(data){
+                			if(data == 1){
+                				$.messager.alert('提示','删除用户成功!',undefined,function(){
+                					$("#userList").datagrid("reload");
+                				});
+                			}else{
+                				$.messager.alert('提示','删除用户失败!',undefined,function(){
+                                    $("#userList").datagrid("reload");
+                                });
+                			}
+                		});
+            	    }
+            	});
+            }
+        }];
 </script>

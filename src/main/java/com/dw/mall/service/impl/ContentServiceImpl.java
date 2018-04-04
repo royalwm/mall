@@ -1,5 +1,12 @@
 package com.dw.mall.service.impl;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.dw.mall.constant.RestConstant;
 import com.dw.mall.mapper.ContentCategoryMapper;
 import com.dw.mall.mapper.ContentMapper;
@@ -13,13 +20,6 @@ import com.dw.mall.utils.EasyuiPagination;
 import com.dw.mall.utils.EasyuiTree;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 @Service
 public class ContentServiceImpl implements ContentService {
@@ -103,5 +103,18 @@ public class ContentServiceImpl implements ContentService {
         }
         return RestConstant.SUCCESS;
     }
+
+	@Override
+	public int editContent(Content content) {
+		ContentExample contentExample = new ContentExample();
+		com.dw.mall.pojo.ContentExample.Criteria createCriteria = contentExample.createCriteria();
+		createCriteria.andIdEqualTo(content.getId());
+		return contentMapper.updateByExampleSelective(content,contentExample);
+	}
+
+	@Override
+	public Content queryNewsById(Long id) {
+		return contentMapper.selectByPrimaryKey(id);
+	}
 
 }

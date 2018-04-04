@@ -100,7 +100,7 @@
 				<div class="orderPInfo">
 					<div class="pItem">
 						<a target="_blank" title="${cart.title }" href="${basePath }/items/${cart.id }/detial">
-						<img src="${cart.image }" style="width: 60px;height: 60px;"/>
+						<img src="${cart.images[0]}" style="width: 60px;height: 60px;"/>
 						</a>
 					</div>
 					<div class="pItem pGoods">

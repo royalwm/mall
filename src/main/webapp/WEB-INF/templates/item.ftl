@@ -53,9 +53,7 @@
 <link rel="stylesheet" type="text/css" href="${basePath}/css/common.css" />
 </head>
 <body >
-<!-- header start -->
 <#include "commons/header.ftl" />
-<!-- header end -->
 <#include "commons/mainmenu.ftl" />
 <div class="linknav"><div class="breadcrumb"><strong><a href="/food/6-0-0-0-0-2-0-0-0-0-0.html">休闲食品</a></strong><span> &gt; <a href="/food/7321-0-0-0-0-2-0-0-0-0-0.html">月饼</a> &gt; <a href="/food/7331-0-0-0-0-2-0-0-0-0-0.html">其他月饼</a> &gt; <a href="http://www.e3mall.cn/pinpai/7331-10863.html">我是花吃</a> &gt; 我是花吃 我是花吃鲜花月饼团圆礼盒390g</span></div></div>
 <div class="pWrap">
@@ -78,7 +76,7 @@
                 <div id="presell-info-sf" class="pItemBook" style="display:none"></div>
                 <div class="pItemsPromo" id="promotion-sf" style="display:none"></div>
                 <div class="pItemsStock">
-                    <div class="dt">送至：</div>
+                  <div class="dt">送至：</div>
                     <div class="dd">
                         <div id="regionSf"><div class="" id="store-selector">
         <div class="text"><div title="北京昌平区回龙观镇">北京昌平区回龙观镇</div><b></b></div>
@@ -107,12 +105,12 @@
                         <div class="pBtn quickBuy" style="display: none;" id="quickBuy" title="快速下单，直达填写订单页面"><a onclick="oneKeyBuy(${item.id}, 0, 1, 0, 1, this);">一键购买</a></div>
                         <div class="yj_time" id="sendTime">预计发货时间：<br>2014-02-28 08:59</div>
                         <div class="phone_client phone_border"><div id="phone_time">扫描下载客户端<br><em>先摇券 后买单</em></div>
-                            <!--手机二维码显示层-->
+                            手机二维码显示层
                             <div class="phone_clientCode" style="display:none;">
                                 <a href="javascript:void(0)" class="ac_phoneClose" title="关闭"></a>
                                 
                             </div>
-                            <!--结束手机二维码显示层-->
+                            结束手机二维码显示层
                         </div>
                         <span class="clear"></span>
                     </div>
@@ -121,7 +119,7 @@
                         <div class="pBtn preBtn" id="arrival_notice"><a href="javascript:void(0);" onclick="Goods.arrivalNotice(this);">到货通知</a></div>
                         <div class="pBtn quickBuy disable"><a href="javascript:void(0);">一键购买</a></div>
                         <div class="phone_client phone_border"><div id="phone_time">扫描下载客户端<br><em>先摇券 后买单</em></div>
-                            <!--手机二维码显示层-->
+                            手机二维码显示层
                             <div class="phone_clientCode" style="display:none;">
                                 <a href="javascript:void(0)" class="ac_phoneClose" title="关闭"></a>
                                 
@@ -135,9 +133,9 @@
                                         height:"124"
                                     }); 
                                 </script>
-                                <!--<img src="images/p_scan1.jpg" width="124" height="124" border="0" />-->
+                                <img src="images/p_scan1.jpg" width="124" height="124" border="0" />
                             </div>
-                            <!--结束手机二维码显示层-->
+                            结束手机二维码显示层
                         </div>
                         <span class="clear"></span>
                     </div>
@@ -169,19 +167,17 @@
                     </div>
                 </div>
             </div>
-            <div class="pShare">
-                <div class="bdShare"><!-- Baidu Button BEGIN -->
+              <div class="pShare">
+               <div class="bdShare">
                   <div id="bdshare" class="bdshare_t bds_tools get-codes-bdshare">
                       <span class="bds_more">分享到：</span>
                       <a class="bds_qzone" title="分享到QQ空间" href="#"></a>
                       <a class="bds_tsina" title="分享到新浪微博" href="#"></a>
                       <a class="bds_tqq" title="分享到腾讯微博" href="#"></a>
                       <a class="bds_renren" title="分享到人人网" href="#"></a>
-                      <!--a class="bds_t163"></a-->
-                      <!--a class="shareCount"></a-->
                   </div>
                   <span class="clear"></span>
-                </div><!-- Baidu Button END -->
+                </div>
                 <div class="pCollect"><a href="javascript:void(0);" id="goodsAddFav" onclick="Goods.addFav(this);">收藏商品</a></div>
                 <span class="clear"></span>
             </div>
@@ -329,12 +325,15 @@
                         title="佳宁娜" style="display: none;">佳宁娜</a></li>
                 </ul>
                 <span class="clickShow"><b class="hide"></b></span>
+                
             </div>
             <div class="l-recommend" id="saletop-sf" style="display:none"></div>
         <div class="l-recommend" id="viewBuyDiv" style="display: none;">
             <div class="ct"><h2>浏览此商品的顾客还买了</h2></div>
             <div class="cm">
+            
                 <ul class="l-buy" id="viewbuy-sf"></ul>
+                
             </div>
         </div>
         <div class="l-recommend">
@@ -342,6 +341,7 @@
             <div class="cm">
                 <ul class="l-buy" id="buyrebuy-sf"><li><div class="p-img"><a target="_blank" href="#"><img src="/images/small_1800005691_1_1_1.jpg"></a></div><div class="title-a"><a target="_blank" href="http://www.e3mall.cn/html/products/5/1800005691.html#trackref=sfbest_item_1600229585_buy1_1">归原Green Yard 有机鲜牛奶 486ml</a></div><div class="title-b">【下单后3-5天发货】外包装更换中，请以实物为准</div><div class="p-price">￥20</div></li></ul>
             </div>
+             
         </div>
         <div class="l-recommend">
             <div class="ct"><h2>浏览此商品的顾客还浏览了</h2></div>

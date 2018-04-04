@@ -23,4 +23,8 @@ public interface ContentService {
 
     int deleteContent(List<Long> ids);
 
+	int editContent(Content content);
+
+	Content queryNewsById(Long id);
+
 }
