@@ -3,7 +3,11 @@ package com.dw.mall.constant;
 public interface RestConstant {
 	int SUCCESS = 1;
 	int FAILED = 2;
-
+	public interface Comment {
+		Integer GOOD = 1; // 好评
+		Integer MID = 2;// 中评
+		Integer BAD = 3;//差评
+	}
 	public interface Items {
 		Byte SOLDOUT = 2; // 下架
 		Byte PUTAWAY = 1;// 上架

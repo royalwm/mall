@@ -21,9 +21,6 @@
             sfprice: 0,
             price:0,
             warehouse: 0,
-            homeurl: 'http://home.e3mall.cn',
-            staticurl: 'http://i.e3mall.cn/html',
-            passporturl: 'https://passport.e3mall.cn',
             businessModel: 3,
         commentType : 0
     };
@@ -51,11 +48,18 @@
 <link rel="stylesheet" type="text/css" href="${basePath}/css/product.css">
 <link rel="stylesheet" type="text/css" href="${basePath}/css/jquery.alerts.css" />
 <link rel="stylesheet" type="text/css" href="${basePath}/css/common.css" />
+<link rel="stylesheet" type="text/css" href="${basePath}/js/jquery-easyui-1.4.1/themes/gray/easyui.css" />
+<link rel="stylesheet" type="text/css" href="${basePath}/js/jquery-easyui-1.4.1/themes/icon.css" />
+<script type="text/javascript" src="${basePath}/js/jquery-easyui-1.4.1/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="${basePath}/js/jquery-easyui-1.4.1/locale/easyui-lang-zh_CN.js"></script>
+<link href="${basePath }/js/kindeditor-4.1.10/themes/default/default.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" charset="utf-8" src="${basePath }/js/kindeditor-4.1.10/kindeditor-all-min.js"></script>
+<script type="text/javascript" charset="utf-8" src="${basePath }/js/kindeditor-4.1.10/lang/zh_CN.js"></script>
 </head>
 <body >
 <#include "commons/header.ftl" />
 <#include "commons/mainmenu.ftl" />
-<div class="linknav"><div class="breadcrumb"><strong><a href="/food/6-0-0-0-0-2-0-0-0-0-0.html">休闲食品</a></strong><span> &gt; <a href="/food/7321-0-0-0-0-2-0-0-0-0-0.html">月饼</a> &gt; <a href="/food/7331-0-0-0-0-2-0-0-0-0-0.html">其他月饼</a> &gt; <a href="http://www.e3mall.cn/pinpai/7331-10863.html">我是花吃</a> &gt; 我是花吃 我是花吃鲜花月饼团圆礼盒390g</span></div></div>
+<div class="linknav"><div class="breadcrumb"><strong>${itemsTitle}</stong></div></div>
 <div class="pWrap">
     <div class="productIntro">
         <div class="pItems">
@@ -76,8 +80,8 @@
                 <div id="presell-info-sf" class="pItemBook" style="display:none"></div>
                 <div class="pItemsPromo" id="promotion-sf" style="display:none"></div>
                 <div class="pItemsStock">
-                  <div class="dt">送至：</div>
-                    <div class="dd">
+                  <!--<div class="dt">送至：</div>-->
+                    <!--<div class="dd">
                         <div id="regionSf"><div class="" id="store-selector">
         <div class="text"><div title="北京昌平区回龙观镇">北京昌平区回龙观镇</div><b></b></div>
         
@@ -85,7 +89,7 @@
       </div>
       </div>
                         <div class="pItemsPrompt" id="time-sf">原产地直供，发货后预计<strong>2-5天</strong>内为您送达</div>
-                    </div>
+                    </div>-->
                     <span class="clear"></span>
                 </div>
                 <div class="pItemsChoose">
@@ -105,12 +109,12 @@
                         <div class="pBtn quickBuy" style="display: none;" id="quickBuy" title="快速下单，直达填写订单页面"><a onclick="oneKeyBuy(${item.id}, 0, 1, 0, 1, this);">一键购买</a></div>
                         <div class="yj_time" id="sendTime">预计发货时间：<br>2014-02-28 08:59</div>
                         <div class="phone_client phone_border"><div id="phone_time">扫描下载客户端<br><em>先摇券 后买单</em></div>
-                            手机二维码显示层
+                           <!-- 手机二维码显示层-->
                             <div class="phone_clientCode" style="display:none;">
                                 <a href="javascript:void(0)" class="ac_phoneClose" title="关闭"></a>
                                 
                             </div>
-                            结束手机二维码显示层
+                           <!-- 结束手机二维码显示层-->
                         </div>
                         <span class="clear"></span>
                     </div>
@@ -150,10 +154,58 @@
                 </div>
             </div>
         <div class="pView">
-                                <div id="pView">
-                <div id="zoom-jpg" class="jqzoom">
-                <img alt="" width="330" height="330" src="${item.images[0] }" jqimg="${item.images[0] }"/>
-                </div>
+                <style>
+                	#b_left{width:330px;height:330px}
+					#b_left .shadow{width:330px;height:330px;background:transparent;position:absolute;top:0;left:0;}
+					 #b_left #floatDiv{width:100px;height:100px;background:red;position:absolute;top:0;left:0;opacity:0.5;filter:alpha(opacity=50);display:none;}
+					#shadow{background:#000;margin-left:10px;z-index:999;display:none;position:absolute;top:0;left:400px;width:500px;height:500px;overflow:hidden;border:1px solid red}
+					#shadow img{position:absolute;left:0;top:0;}
+				</style>
+				<div id="b_left">
+				<div class="img"><img alt="" width="330" height="330" src="${item.images[0] }" jqimg="${item.images[0] }"/></div>
+				<div id="floatDiv"></div>
+				<div class="shadow"></div>
+				</div>
+				<div id="shadow" ><img src="${item.images[0] }"/></div>
+                <script type="text/javascript">
+					window.onload=function(){
+					var floatDom=dom("floatDiv");
+					var bLDom=$(".pView")[0];
+					var shadowDom=dom("shadow");
+					var imgDom=shadowDom.children[0];
+					bLDom.onmouseover=function(){
+					shadowDom.style.display="block";
+					floatDom.style.display="block";
+					this.style.cursor="move";
+				};
+				bLDom.onmouseout=function(){
+					floatDom.style.display="none";
+					shadowDom.style.display="none";
+				};
+				bLDom.onmousemove=function(e){
+					var ev=e||window.event;
+					var x=(ev.clientX||ev.pageX)-this.parentNode.offsetLeft;
+					var y=(ev.clientY||ev.pageY)-this.parentNode.offsetTop+document.documentElement.scrollTop||document.body.scrollTop ;
+					var xx=x-floatDom.offsetWidth/2;
+					var yy=y-floatDom.offsetHeight/2;
+					var maxLeft=this.offsetWidth-floatDom.offsetWidth;
+					var maxTop=this.offsetHeight-floatDom.offsetHeight;
+					if(xx<=0)xx=0;
+					if(yy<=0)yy=0;
+					if(xx>=maxLeft)xx=maxLeft;
+					if(yy>=maxTop)yy=maxTop;
+					floatDom.style.left=xx+"px";
+					floatDom.style.top=yy+"px";
+					var xbit=xx/maxLeft;
+					var ybit=yy/maxTop;
+					imgDom.style.left=(imgDom.offsetWidth-shadowDom.offsetWidth)*-xbit+"px";
+					imgDom.style.top=(imgDom.offsetHeight-shadowDom.offsetHeight)*-ybit+"px";
+				};
+			};
+			function dom(id){
+				return document.getElementById(id);
+			};
+			</script>
                 <div id="pic-list">
                     <a href="javascript:void(0);" class="btn-control disabled" id="btn-forward"><b></b></a>
                     <a href="javascript:void(0);" class="btn-control disabled" id="btn-backward"><b></b></a>
@@ -197,8 +249,8 @@
                                                 </div>
                 <div class="pdetail">
                     <ul>
-                                                <li>品牌：<span><a href="http://www.e3mall.cn/pinpai/7331-10863.html" title="我是花吃" target="_blank">我是花吃</a></span></li>
-                                                <li>产地：<span><a href="/food/7331-0-45-0-0-2-0-0-0-0-0.html" title="中国" target="_blank">中国</a></span>
+                                                <li>品牌：<span><a href="javascript:void(0)" title="${brand}" target="_blank">${brand}</a></span></li>
+                                                <li>产地：<span><a href="javascript:void(0)" title="中国" target="_blank">中国</a></span>
                         </li>
                                                                         <li>重量：1.4kg （含包装）</li>
                                                 <li>商品编号：${item.id }</li>
@@ -216,12 +268,25 @@
                     <dl class="prate">
                         <dt>好评度：</dt>
                         <dd>
-                            <div class="dd"><span id="positive-sf" style="100%"></span></div>
+                            <div class="dd"><span id="positive-sf" style="background:green"></span></div>
                             <strong><span id="positive-num-sf">100</span><span>%</span></strong>
                             <div style="display:none" id="score"></div>
+                            <script>
+                            if(${allCommentAccount}>0){
+                            	$("#positive-sf").css("width",${good}/${allCommentAccount}*100+"px");
+                            	$("#positive-num-sf").html(parseInt(${good}/${allCommentAccount}*100));
+                            	}
+                            </script>
                         </dd>
                     </dl>
-                    <dl class="pcomment" id="bestComment-sf"><dd><b></b><div><span><p>还没人评论哦！</p><p><a href="javascript:Goods.gotoPl()" class="green">马上评价</a></p></span></div></dd></dl>
+                    <#if allCommentAccount==0>
+                    	<dl class="pcomment" id="bestComment-sf"><dd><b></b><div><span><p>还没人评论哦！</p><p><a href="javascript:void(0)" class="green" onclick="goComment()">马上评价</a></p></span></div></dd></dl>
+                    </#if>
+                    <script>
+                    	function goComment(){
+                    	window.scrollTo(0, document.body.clientHeight);
+                    	}
+                    </script>
                 </div>
             </div>
         <span class="clear"></span>
@@ -232,7 +297,7 @@
         <div class="pDetail">
             <ul class="pTab">
                 <li class="curr" pcont-target="div-detail"><a title="商品详情" href="javascript:void(0);">商品介绍</a></li>
-                                <li pcont-target="div-comment"><a title="用户评价" href="javascript:void(0);">评价<b>(<font class="comment-total-sf">0</font>)</b></a></li>
+                                <li pcont-target="div-comment"><a title="用户评价" href="javascript:void(0);">评价<b>(<font class="comment-total-sf">${allCommentAccount}</font>)</b></a></li>
                             </ul>
         </div>
         <div class="clear" id="flow-layer-sf"></div>
@@ -266,26 +331,194 @@
                     <h3 class="pTop">用户评价</h3>
                     <div class="commDetail">
                         <div class="pScore">好评度<strong><font id="user-comment-sf">100</font><span>%</span></strong></div>
-                        <div class="pPercent" id="sorce-star-sf"><dl><dt>好评</dt><dd class="pBar"><div style="width:100px;"></div></dd><dd>100%</dd></dl><dl><dt>中评</dt><dd class="pBar"><div style="width:0px;"></div></dd><dd>0%</dd></dl><dl><dt>差评</dt><dd class="pBar"><div style="width:0px;"></div></dd><dd>0%</dd></dl></div>
+                        <div class="pPercent" id="sorce-star-sf"><dl>
+                        <dt>好评</dt><dd class="pBar"  id="good" style="border:1px solid #ccc"><div style="width:100px;"></div></dd>
+                        <dd>100%</dd></dl>
+                       <dl><dt>中评</dt><dd class="pBar" id="mid"><div style="width:0px;"></div></dd>
+                       <dd>0%</dd></dl>
+                       <dl><dt>差评</dt><dd class="pBar" id="bad"><div style="width:0px;"></div></dd>
+                       <dd>0%</dd></dl></div>
+                       <script>
+                       		if(${allCommentAccount}>0){
+                       		$("#user-comment-sf").html(parseInt(${good}/${allCommentAccount}*100));
+                       			$("#good div").css({
+                       			width:${good}/${allCommentAccount}*100+"px"
+                       		})
+                       		$("#good").next().html(parseInt(${good}/${allCommentAccount}*100)+"%");
+                       		$("#mid div").css({
+                       			width:${mid}/${allCommentAccount}*100+"px"
+                       		})
+                       		$("#mid").next().html(parseInt(${mid}/${allCommentAccount}*100)+"%");
+                       		$("#bad div").css({
+                       			width:${bad}/${allCommentAccount}*100+"px"
+                       		})
+                       		$("#bad").next().html(parseInt(${bad}/${allCommentAccount}*100)+"%");
+                       		}
+                       </script>
                         <div class="pBtns">
+                        	<div id="itemCommentWindow" class="easyui-window" title="评论商品" data-options="modal:true,closed:true,iconCls:'icon-save',href:'${basePath}/items/comment/echo'" style="width:800px;height:450px;padding:10px;" >
+                        	</div>
                             <div>购买过商品，参与评价晒单，可获得积分哦~~</div>
                             <div>
-                                <a class="pbtn2" href="javascript:Goods.gotoPl()" rel="nofollow">马上评价</a><span class="showMore"><a target="_blank" href="http://www.e3mall.cn/html/article/140/133.html" rel="nofollow">[如何获取积分]</a></span>
+                                <a class="pbtn2" onclick="showCommentWindow()" href="javascript:void(0)" rel="nofollow">马上评价</a>
+                                <script>
+                                	function showCommentWindow(){
+                                	 $('#itemCommentWindow').window({
+                                	 left:"200px",
+                                	 top:document.body.clientHeight-800+"px"
+                                	 }).window("open");
+                                	}
+                                </script>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="commentAll" id="comment-filter-sf">
-                  <h3 class="curr"><a href="javascript:;" data-type="0">全部评价<font>(0)</font></a></h3>
-                  <h3><a href="javascript:;" data-type="1">好评<font>(0)</font></a></h3>
-                  <h3><a href="javascript:;" data-type="2">中评<font>(0)</font></a></h3>
-                  <h3><a href="javascript:;" data-type="3">差评<font>(0)</font></a></h3>
-                  <h3><a href="javascript:;" data-type="4">有晒单<font>(0)</font></a></h3>
+                  <h3 class="curr"><a href="javascript:void(0);" onclick="selectComment(this,1)" data-type="0">全部评价<font>(${allCommentAccount})</font></a></h3>
+                  <h3><a href="javascript:void(0);" onclick="selectComment(this,1)" data-type="1">好评<font>(${good})</font></a></h3>
+                  <h3><a href="javascript:void(0);" onclick="selectComment(this,1)" data-type="2">中评<font>(${mid})</font></a></h3>
+                  <h3><a href="javascript:void(0);" onclick="selectComment(this,1)" data-type="3">差评<font>(${bad})</font></a></h3>
                 </div>
-                <div id="have-none-comments" style="padding-left:10px;">还木有评价额，快抢沙发吧！</div><ul class="pComment" id="comment-lists-sf"></ul>
+                <script>
+                	function selectComment(obj,page){
+                	    $(".pages .current").html(1);
+                		$.ajax({
+                			url:"${basePath}/items/comment/"+_SF_CFG.productId+"?type="+obj.getAttribute("data-type")+"&page="+page,
+                			type:"get",
+                			success:function(data){
+                				var length=data.length;
+                				var comment_body=$("#comment_body");
+                				comment_body.html("");
+                				var html="";
+                				for(var i=0;i<length;i++){
+                					html+="<a id='comment-5722'></a>"+
+										"<div class='comment' >"+
+										"<ul class='links inline'>"+
+										<!--<li class='comment-reply first last'><a href='/comment/reply/3420/5722'>回复</a></li>-->
+										"</ul>"+
+										"<div class='submitted'> <span rel='sioc:has_creator'><a href='/user/37980' title='查看用户资料' class='username' style='font-size:18px'>"+data[i].username+"</a></span> <span class='marker'>vip</span> </div>"+
+										"<div class='content'>"+
+										"<span rel='sioc:reply_of' resource='/blog/3420' class='rdf-meta element-hidden'></span>"+data[i].content+
+										"<p class='submitted'><span>"+data[i].createtime+"</span></p>"+
+										"</div>"+
+									"</div><hr/>"
+                				}
+                				comment_body.html(html);
+                			}
+                		})
+                	}
+                </script>
+                <style>
+                	/*评论明细区域*/
+						 .content { border-bottom: 1px solid #fff;padding: 12px 0;}
+						.submitted{padding-left:0;margin-bottom:15px;font-size:15px;margin-top:10px;}
+						 ul.inline{float:right;margin-top:0;padding-left:0;width:300px;text-align:right;}
+						 .comment{padding-bottom:26px;font-size:16px}
+						 .comment-form{padding:2% 0;}
+						 .content{border-bottom:1px solid #fff;padding:12px 0}
+						 h2{font-size:18px}
+						.marker{font-size:11.844px;background:#CDCDCD;padding:2px 9px;color:#FFF;border-radius:2px;}
+                </style>
+                <div id="comment_body">
+                <#if  itemsCommentsList??>
+                	<#list itemsCommentsList as itemsComment>
+                	<a id='comment-5722'></a>
+							<div class='comment' >
+							<ul class='links inline'>
+							<!--<li class='comment-reply first last'><a href='/comment/reply/3420/5722'>回复</a></li>-->
+							</ul>
+							<div class='submitted'> <span rel='sioc:has_creator'><a href='/user/37980' title='查看用户资料' class='username' style='font-size:18px'>${itemsComment.username}</a></span> <span class='marker'>vip</span> </div>
+							<div class='content'>
+							<span rel='sioc:reply_of' resource='/blog/3420' class='rdf-meta element-hidden'></span>${itemsComment.content}
+							<p class='submitted'><span>${itemsComment.createtime?string('yyyy.MM.dd HH:mm:ss')}</span></p>
+							</div>
+						</div><hr/>
+                </#list>
+                <#else>
+                div id="have-none-comments" style="padding-left:10px;">还木有评价额，快抢沙发吧！</div><ul class="pComment" id="comment-lists-sf"></ul>
+				</#if>
+				</div>
                 <div class="plpage">
                     <div class="showAll" style="display: none;"><a target="_blank" href="/reviewlist/0/${item.id}">[查看全部评价]</a></div>
-                    <div class="pages" id="comment-ajax-page-sf"><span class="prev disabled"><b class="prevarr"></b>上一页</span><span class="current">1</span><span class="next disabled">下一页<b class="nextarr"></b></span></div>
+                    <div class="pages" id="comment-ajax-page-sf">
+	                    <span class="prev disabled" onclick="prevComment(this)"><b class="prevarr"></b>上一页</span>
+	                    <span class="current">1</span>
+	                    <span class="next disabled" onclick="nextComment(this)">下一页<b class="nextarr"></b></span>
+                    </div>
+                    <script>
+                    	function prevComment(obj){
+                    		var curr=$(".commentAll").find(".curr a")[0];
+                    		var pageDom=$(".pages .current");
+                    		var page=pageDom.html()*1-1;
+                    		var mark=true;
+                    			$.ajax({
+		                			url:"${basePath}/items/comment/"+_SF_CFG.productId+"?type="+curr.getAttribute("data-type")+"&page="+page,
+		                			type:"get",
+		                			async:false,
+		                			success:function(data){
+		                				var length=data.length;
+		                				if(length==0){
+		                					mark=false;
+		                					return;
+		                				}
+		                				var comment_body=$("#comment_body");
+		                				comment_body.html("");
+		                				var html="";
+		                				for(var i=0;i<length;i++){
+		                					html+="<a id='comment-5722'></a>"+
+												"<div class='comment' >"+
+												"<ul class='links inline'>"+
+												<!--<li class='comment-reply first last'><a href='/comment/reply/3420/5722'>回复</a></li>-->
+												"</ul>"+
+												"<div class='submitted'> <span rel='sioc:has_creator'><a href='/user/37980' title='查看用户资料' class='username' style='font-size:18px'>"+data[i].username+"</a></span> <span class='marker'>vip</span> </div>"+
+												"<div class='content'>"+
+												"<span rel='sioc:reply_of' resource='/blog/3420' class='rdf-meta element-hidden'></span>"+data[i].content+
+												"<p class='submitted'><span>"+data[i].createtime+"</span></p>"+
+												"</div>"+
+											"</div><hr/>"
+		                				}
+		                				comment_body.html(html);
+		                			}
+                		})
+                    		if(mark)pageDom.html(page);
+                    	}
+                    	function nextComment(obj){
+                    		var curr=$(".commentAll").find(".curr a")[0];
+                    		var pageDom=$(".pages .current");
+                    		var page=pageDom.html()*1+1;
+                    		var mark=true;
+                    			$.ajax({
+		                			url:"${basePath}/items/comment/"+_SF_CFG.productId+"?type="+curr.getAttribute("data-type")+"&page="+page,
+		                			type:"get",
+		                			async:false,
+		                			success:function(data){
+		                				var length=data.length;
+		                				if(length==0){
+		                					mark=false;
+		                					return;
+		                				}
+		                				var comment_body=$("#comment_body");
+		                				comment_body.html("");
+		                				var html="";
+		                				for(var i=0;i<length;i++){
+		                					html+="<a id='comment-5722'></a>"+
+												"<div class='comment' >"+
+												"<ul class='links inline'>"+
+												<!--<li class='comment-reply first last'><a href='/comment/reply/3420/5722'>回复</a></li>-->
+												"</ul>"+
+												"<div class='submitted'> <span rel='sioc:has_creator'><a href='/user/37980' title='查看用户资料' class='username' style='font-size:18px'>"+data[i].username+"</a></span> <span class='marker'>vip</span> </div>"+
+												"<div class='content'>"+
+												"<span rel='sioc:reply_of' resource='/blog/3420' class='rdf-meta element-hidden'></span>"+data[i].content+
+												"<p class='submitted'><span>"+data[i].createtime+"</span></p>"+
+												"</div>"+
+											"</div><hr/>"
+		                				}
+		                				comment_body.html(html);
+		                			}
+                		})
+                    		if(mark)pageDom.html(page);
+                    	}
+                    </script>
                 </div>
             </div>
             <div class="clear2"></div>

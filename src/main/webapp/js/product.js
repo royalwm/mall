@@ -495,7 +495,8 @@
 
     //评论跳转
     Goods.gotoPl = function () {
-        $.post("/mark/isPlProduct/id/"+ _SF_CFG.productId +"/flag/0",null,function(data){
+    	
+        $.post("/items/comment/"+ _SF_CFG.productId,null,function(data){
             if(data.data == 0){
                 //jAlert(data.info,'提示信息');
 				$.alerts.okButton = '确定';
